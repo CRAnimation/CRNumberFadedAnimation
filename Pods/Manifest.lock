@@ -1,0 +1,22 @@
+PODS:
+  - BearSkill (0.2.0)
+
+DEPENDENCIES:
+  - BearSkill (from `https://github.com/BearRan/BearSkill`, commit `81b9c9a`)
+
+EXTERNAL SOURCES:
+  BearSkill:
+    :commit: 81b9c9a
+    :git: https://github.com/BearRan/BearSkill
+
+CHECKOUT OPTIONS:
+  BearSkill:
+    :commit: 81b9c9a
+    :git: https://github.com/BearRan/BearSkill
+
+SPEC CHECKSUMS:
+  BearSkill: 180b4d49cfae7466f65402eabcdb8d5a28665314
+
+PODFILE CHECKSUM: 74e49dd67b9835f2a83b6e819657a73025bb5360
+
+COCOAPODS: 1.1.0.rc.2

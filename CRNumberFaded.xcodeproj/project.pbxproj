@@ -15,6 +15,9 @@
 		09C5C4281E82BE6E0091EEAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C5C4261E82BE6E0091EEAD /* LaunchScreen.storyboard */; };
 		09C5C4331E82BE6F0091EEAD /* CRNumberFadedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C4321E82BE6F0091EEAD /* CRNumberFadedTests.m */; };
 		09C5C43E1E82BE6F0091EEAD /* CRNumberFadedUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C43D1E82BE6F0091EEAD /* CRNumberFadedUITests.m */; };
+		98FC6CAA0994536BA34ADC11 /* libPods-CRNumberFadedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */; };
+		B904CE5B9A3F38ED878F3D1E /* libPods-CRNumberFadedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */; };
+		E12630B7F8A2DAAEE49B8133 /* libPods-CRNumberFaded.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0903454D1E82C5730061BE0C /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		09C5C4151E82BE6E0091EEAD /* CRNumberFaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRNumberFaded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C5C4191E82BE6E0091EEAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09C5C41B1E82BE6E0091EEAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +55,15 @@
 		09C5C4391E82BE6F0091EEAD /* CRNumberFadedUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CRNumberFadedUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C5C43D1E82BE6F0091EEAD /* CRNumberFadedUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRNumberFadedUITests.m; sourceTree = "<group>"; };
 		09C5C43F1E82BE6F0091EEAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFaded.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53745675C8548BB5030D7949 /* Pods-CRNumberFaded.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRNumberFaded.release.xcconfig"; path = "Pods/Target Support Files/Pods-CRNumberFaded/Pods-CRNumberFaded.release.xcconfig"; sourceTree = "<group>"; };
+		708D48E3BBA7D14A6C826870 /* Pods-CRNumberFadedUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRNumberFadedUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CRNumberFadedUITests/Pods-CRNumberFadedUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B8C96CAC3DF0923C32F7CB28 /* Pods-CRNumberFadedTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRNumberFadedTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CRNumberFadedTests/Pods-CRNumberFadedTests.release.xcconfig"; sourceTree = "<group>"; };
+		D92A178776E2E9AED69437E6 /* Pods-CRNumberFadedTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRNumberFadedTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CRNumberFadedTests/Pods-CRNumberFadedTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D9ADE747B97862270C218779 /* Pods-CRNumberFadedUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRNumberFadedUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CRNumberFadedUITests/Pods-CRNumberFadedUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4A9995EB2977FD651368CC7 /* Pods-CRNumberFaded.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CRNumberFaded.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CRNumberFaded/Pods-CRNumberFaded.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E12630B7F8A2DAAEE49B8133 /* libPods-CRNumberFaded.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B904CE5B9A3F38ED878F3D1E /* libPods-CRNumberFadedTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98FC6CAA0994536BA34ADC11 /* libPods-CRNumberFadedUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +101,8 @@
 				09C5C4311E82BE6F0091EEAD /* CRNumberFadedTests */,
 				09C5C43C1E82BE6F0091EEAD /* CRNumberFadedUITests */,
 				09C5C4161E82BE6E0091EEAD /* Products */,
+				4AC3098EB3F3A64B2FC2D59B /* Pods */,
+				2EDFD3FD49B3949A6378CEBE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				09C5C4191E82BE6E0091EEAD /* main.m */,
+				0903454D1E82C5730061BE0C /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -140,6 +159,29 @@
 			path = CRNumberFadedUITests;
 			sourceTree = "<group>";
 		};
+		2EDFD3FD49B3949A6378CEBE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */,
+				47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */,
+				43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4AC3098EB3F3A64B2FC2D59B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E4A9995EB2977FD651368CC7 /* Pods-CRNumberFaded.debug.xcconfig */,
+				53745675C8548BB5030D7949 /* Pods-CRNumberFaded.release.xcconfig */,
+				D92A178776E2E9AED69437E6 /* Pods-CRNumberFadedTests.debug.xcconfig */,
+				B8C96CAC3DF0923C32F7CB28 /* Pods-CRNumberFadedTests.release.xcconfig */,
+				D9ADE747B97862270C218779 /* Pods-CRNumberFadedUITests.debug.xcconfig */,
+				708D48E3BBA7D14A6C826870 /* Pods-CRNumberFadedUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +189,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09C5C4421E82BE6F0091EEAD /* Build configuration list for PBXNativeTarget "CRNumberFaded" */;
 			buildPhases = (
+				135F43A08E8C17E7EAE9F6F4 /* [CP] Check Pods Manifest.lock */,
 				09C5C4111E82BE6D0091EEAD /* Sources */,
 				09C5C4121E82BE6D0091EEAD /* Frameworks */,
 				09C5C4131E82BE6D0091EEAD /* Resources */,
+				56668E42BBDB2029B11CA3EC /* [CP] Embed Pods Frameworks */,
+				869AE8A806A0597269055942 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,9 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09C5C4451E82BE6F0091EEAD /* Build configuration list for PBXNativeTarget "CRNumberFadedTests" */;
 			buildPhases = (
+				9D4C1C565EC1011F0B571078 /* [CP] Check Pods Manifest.lock */,
 				09C5C42A1E82BE6F0091EEAD /* Sources */,
 				09C5C42B1E82BE6F0091EEAD /* Frameworks */,
 				09C5C42C1E82BE6F0091EEAD /* Resources */,
+				57668F836018FF56776A09D1 /* [CP] Embed Pods Frameworks */,
+				E70C0C5D80606A0CDDD58FA5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,9 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09C5C4481E82BE6F0091EEAD /* Build configuration list for PBXNativeTarget "CRNumberFadedUITests" */;
 			buildPhases = (
+				1B0F661F984249BDB02912D1 /* [CP] Check Pods Manifest.lock */,
 				09C5C4351E82BE6F0091EEAD /* Sources */,
 				09C5C4361E82BE6F0091EEAD /* Frameworks */,
 				09C5C4371E82BE6F0091EEAD /* Resources */,
+				C259EC5684DE2CC1A7AA5F0D /* [CP] Embed Pods Frameworks */,
+				1CAD2A0F10ADD31FE1EC3694 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,6 +318,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		135F43A08E8C17E7EAE9F6F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1B0F661F984249BDB02912D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		1CAD2A0F10ADD31FE1EC3694 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CRNumberFadedUITests/Pods-CRNumberFadedUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56668E42BBDB2029B11CA3EC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CRNumberFaded/Pods-CRNumberFaded-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57668F836018FF56776A09D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CRNumberFadedTests/Pods-CRNumberFadedTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		869AE8A806A0597269055942 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CRNumberFaded/Pods-CRNumberFaded-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D4C1C565EC1011F0B571078 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C259EC5684DE2CC1A7AA5F0D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CRNumberFadedUITests/Pods-CRNumberFadedUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E70C0C5D80606A0CDDD58FA5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CRNumberFadedTests/Pods-CRNumberFadedTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09C5C4111E82BE6D0091EEAD /* Sources */ = {
@@ -422,8 +611,10 @@
 		};
 		09C5C4431E82BE6F0091EEAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4A9995EB2977FD651368CC7 /* Pods-CRNumberFaded.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = CRNumberFaded/PrefixHeader.pch;
 				INFOPLIST_FILE = CRNumberFaded/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Bear.CRNumberFaded;
@@ -433,8 +624,10 @@
 		};
 		09C5C4441E82BE6F0091EEAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53745675C8548BB5030D7949 /* Pods-CRNumberFaded.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = CRNumberFaded/PrefixHeader.pch;
 				INFOPLIST_FILE = CRNumberFaded/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Bear.CRNumberFaded;
@@ -444,6 +637,7 @@
 		};
 		09C5C4461E82BE6F0091EEAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D92A178776E2E9AED69437E6 /* Pods-CRNumberFadedTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CRNumberFadedTests/Info.plist;
@@ -456,6 +650,7 @@
 		};
 		09C5C4471E82BE6F0091EEAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8C96CAC3DF0923C32F7CB28 /* Pods-CRNumberFadedTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = CRNumberFadedTests/Info.plist;
@@ -468,6 +663,7 @@
 		};
 		09C5C4491E82BE6F0091EEAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9ADE747B97862270C218779 /* Pods-CRNumberFadedUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CRNumberFadedUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -479,6 +675,7 @@
 		};
 		09C5C44A1E82BE6F0091EEAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 708D48E3BBA7D14A6C826870 /* Pods-CRNumberFadedUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = CRNumberFadedUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -507,6 +704,7 @@
 				09C5C4441E82BE6F0091EEAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09C5C4451E82BE6F0091EEAD /* Build configuration list for PBXNativeTarget "CRNumberFadedTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +713,7 @@
 				09C5C4471E82BE6F0091EEAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09C5C4481E82BE6F0091EEAD /* Build configuration list for PBXNativeTarget "CRNumberFadedUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +722,7 @@
 				09C5C44A1E82BE6F0091EEAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

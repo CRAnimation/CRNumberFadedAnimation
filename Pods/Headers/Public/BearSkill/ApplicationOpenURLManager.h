@@ -1,0 +1,1 @@
+../../../BearSkill/Pod/Classes/Constants/ApplicationOpenURLManager.h
