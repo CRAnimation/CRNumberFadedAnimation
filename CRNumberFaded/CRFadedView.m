@@ -88,7 +88,7 @@
 
 - (CABasicAnimation *)scaleAnimation
 {
-    if (_scaleAnimation) {
+    if (!_scaleAnimation) {
         _scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
         _scaleAnimation.fromValue = @1.0;
         _scaleAnimation.toValue = @1.0;
