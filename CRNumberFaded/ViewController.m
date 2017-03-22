@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "CRNumberFaded.h"
 
+#import "CRFadedView.h"
+
 @interface ViewController ()
 
 @end
@@ -19,6 +21,7 @@
     [super viewDidLoad];
     
     [self createUI];
+    [self testFadedView];
 }
 
 - (void)createUI
@@ -28,6 +31,22 @@
     [self.view addSubview:numberFadedView];
     [numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
 }
+
+- (void)testFadedView
+{
+    CRFadedView *fadedView = [[CRFadedView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    fadedView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:fadedView];
+    [fadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
+    
+    fadedView.label.text = @"123";
+    [fadedView relayUI];
+    
+    [BearConstants delayAfter:2.0 dealBlock:^{
+        [fadedView fadeOut];
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
