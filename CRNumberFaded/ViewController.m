@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "CRNumberFaded.h"
 
 @interface ViewController ()
 
@@ -16,9 +17,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self createUI];
 }
 
+- (void)createUI
+{
+    CRNumberFaded *numberFadedView = [[CRNumberFaded alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+    numberFadedView.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:numberFadedView];
+    [numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
