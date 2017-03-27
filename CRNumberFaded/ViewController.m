@@ -44,6 +44,7 @@
     
     [BearConstants delayAfter:2.0 dealBlock:^{
         [fadedView fadeOut];
+        [fadedView moveFromPointValue:nil toPointValue:[NSValue valueWithCGPoint:CGPointMake(fadedView.centerX - 20, fadedView.centerY - 20)]];
     }];
 }
 

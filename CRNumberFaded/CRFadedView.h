@@ -15,10 +15,13 @@
 @property (strong, nonatomic) NSNumber *fadeInRatio;
 @property (strong, nonatomic) NSNumber *fadeOutRatio;
 @property (strong, nonatomic) NSNumber *fadeDuration;
+@property (strong, nonatomic) NSNumber *positionMoveDuration;
 
 - (void)loadParameterAndCreateUI;
 - (void)fadeIn;
 - (void)fadeOut;
+- (void)moveFromPointValue:(NSValue *)fromPointValue toPointValue:(NSValue *)toPointValue;
+
 - (void)relayUI;
 
 @end

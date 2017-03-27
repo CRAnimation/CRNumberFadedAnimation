@@ -11,6 +11,7 @@
 @interface CRFadedView ()
 
 @property (strong, nonatomic) CABasicAnimation *scaleAnimation;
+@property (strong, nonatomic) CABasicAnimation *positionAnimation;
 
 @end
 
@@ -33,7 +34,8 @@
     self.needLabel = @YES;
     self.fadeInRatio = @0.5;
     self.fadeOutRatio = @2;
-    self.fadeDuration = @2.0;
+    self.fadeDuration = @0.3;
+    self.positionMoveDuration = @0.3;
 }
 
 #pragma mark - CreateUI
@@ -76,6 +78,18 @@
     [self.layer addAnimation:self.scaleAnimation forKey:self.scaleAnimation.keyPath];
 }
 
+- (void)moveFromPointValue:(NSValue *)fromPointValue toPointValue:(NSValue *)toPointValue
+{
+    if (fromPointValue) {
+        self.positionAnimation.fromValue = fromPointValue;
+    }
+    
+    if (toPointValue) {
+        self.positionAnimation.toValue = toPointValue;
+    }
+    [self.layer addAnimation:self.positionAnimation forKey:self.positionAnimation.keyPath];
+}
+
 #pragma mark - Setter & Getter
 - (UILabel *)label
 {
@@ -95,10 +109,24 @@
         _scaleAnimation.fillMode = kCAFillModeForwards;
         _scaleAnimation.removedOnCompletion = NO;
         _scaleAnimation.duration = [self.fadeDuration floatValue];
-        _scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        _scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     }
     
     return _scaleAnimation;
+}
+
+- (CABasicAnimation *)positionAnimation
+{
+    if (!_positionAnimation) {
+        _positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+//        _positionAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
+        _positionAnimation.fillMode = kCAFillModeForwards;
+        _positionAnimation.removedOnCompletion = NO;
+        _positionAnimation.duration = [self.positionMoveDuration floatValue];
+        _positionAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    }
+    
+    return _positionAnimation;
 }
 
 @end
