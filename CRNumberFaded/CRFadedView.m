@@ -13,6 +13,7 @@
 @property (strong, nonatomic) CABasicAnimation *scaleAnimation;
 @property (strong, nonatomic) CABasicAnimation *positionAnimation;
 @property (strong, nonatomic) CABasicAnimation *opacityAnimation;
+@property (strong, nonatomic) CAAnimationGroup *animationGroup;
 
 @end
 
@@ -70,26 +71,34 @@
 #pragma mark - Method
 - (void)fadeIn
 {
-    NSLog(@"--fadeIn");
     self.scaleAnimation.fromValue = self.fadeInRatio;
     self.scaleAnimation.toValue = @1.0;
-    [self.layer addAnimation:self.scaleAnimation forKey:self.scaleAnimation.keyPath];
     
     self.positionAnimation.fromValue = self.fadeInOffSetPointValue;
     self.positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
-    [self.layer addAnimation:self.positionAnimation forKey:self.positionAnimation.keyPath];
+    
+    self.opacityAnimation.fromValue = @0;
+    self.opacityAnimation.toValue = @1;
+    
+    self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation, self.opacityAnimation];
+    self.animationGroup.duration = [self.animationDuration floatValue];
+    [self.layer addAnimation:self.animationGroup forKey:nil];
 }
 
 - (void)fadeOut
 {
-    NSLog(@"--fadeOut");
     self.scaleAnimation.fromValue = @1.0;
     self.scaleAnimation.toValue = self.fadeOutRatio;
-    [self.layer addAnimation:self.scaleAnimation forKey:self.scaleAnimation.keyPath];
     
     self.positionAnimation.fromValue = [NSValue valueWithCGPoint:self.center];
     self.positionAnimation.toValue = self.fadeOutOffSetPointValue;
-    [self.layer addAnimation:self.positionAnimation forKey:self.positionAnimation.keyPath];
+    
+    self.opacityAnimation.fromValue = @1;
+    self.opacityAnimation.toValue = @0;
+    
+    self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation, self.opacityAnimation];
+    self.animationGroup.duration = [self.animationDuration floatValue];
+    [self.layer addAnimation:self.animationGroup forKey:nil];
 }
 
 #pragma mark - Setter & Getter
@@ -110,7 +119,6 @@
         _scaleAnimation.toValue = @1.0;
         _scaleAnimation.fillMode = kCAFillModeForwards;
         _scaleAnimation.removedOnCompletion = NO;
-        _scaleAnimation.duration = [self.animationDuration floatValue];
         _scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     }
     
@@ -121,10 +129,8 @@
 {
     if (!_positionAnimation) {
         _positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-//        _positionAnimation.fromValue = [NSValue valueWithCGPoint:CGPointMake(0, 0)];
         _positionAnimation.fillMode = kCAFillModeForwards;
         _positionAnimation.removedOnCompletion = NO;
-        _positionAnimation.duration = [self.animationDuration floatValue];
         _positionAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     }
     
@@ -137,11 +143,22 @@
         _opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         _opacityAnimation.fillMode = kCAFillModeForwards;
         _opacityAnimation.removedOnCompletion = NO;
-        _opacityAnimation.duration = [self.animationDuration floatValue];
         _opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     }
     
     return _opacityAnimation;
+}
+
+- (CAAnimationGroup *)animationGroup
+{
+    if (!_animationGroup) {
+        _animationGroup = [CAAnimationGroup animation];
+        _animationGroup.fillMode = kCAFillModeForwards;
+        _animationGroup.removedOnCompletion = NO;
+        _animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    }
+    
+    return _animationGroup;
 }
 
 - (NSValue *)fadeOutOffSetPointValue
