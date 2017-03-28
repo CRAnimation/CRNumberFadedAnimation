@@ -10,9 +10,9 @@
 
 @interface CRFadedView ()
 
-@property (strong, nonatomic) CABasicAnimation *scaleAnimation;
-@property (strong, nonatomic) CABasicAnimation *positionAnimation;
-@property (strong, nonatomic) CAAnimationGroup *animationGroup;
+@property (strong, nonatomic) CABasicAnimation *scaleAnimation;     //考虑删除
+@property (strong, nonatomic) CABasicAnimation *positionAnimation;  //考虑删除
+@property (strong, nonatomic) CAAnimationGroup *animationGroup;     //考虑删除
 
 @property (strong, nonatomic)CAKeyframeAnimation *opacityKeyFrameAnimation;
 @property (strong, nonatomic)CAKeyframeAnimation *scaleKeyFrameAnimation;
@@ -98,7 +98,7 @@
     [self.layer addAnimation:self.animationGroup forKey:nil];
 }
 
-- (void)testFade
+- (void)testFadeLinear
 {
     //  scaleKeyFrameAnimation
     self.scaleKeyFrameAnimation.values = @[self.fadeInRatio,
@@ -106,8 +106,8 @@
                                            self.fadeOutRatio
                                            ];
     self.scaleKeyFrameAnimation.timingFunctions = @[
-                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
-                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
+                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
                                                     ];
     
     //  positionKeyFrameAnimation
@@ -116,15 +116,15 @@
                                               self.fadeOutOffSetPointValue,
                                               ];
     self.positionKeyFrameAnimation.timingFunctions = @[
-                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
-                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
-                                                      ];
+                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
+                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
+                                                       ];
     
     //  opacityKeyFrameAnimation
     self.opacityKeyFrameAnimation.values = @[@0, @1, @0];
     self.opacityKeyFrameAnimation.timingFunctions = @[
-                                                      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
-                                                      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                                      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
+                                                      [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear],
                                                       ];
     
     //  animationGroup
@@ -135,6 +135,8 @@
                                        ];
     self.animationGroup.duration = [self.animationDuration floatValue];
     [self.layer addAnimation:self.animationGroup forKey:nil];
+    
+    
 }
 
 #pragma mark - Setter & Getter

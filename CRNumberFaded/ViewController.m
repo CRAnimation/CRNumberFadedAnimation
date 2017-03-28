@@ -12,6 +12,10 @@
 #import "CRFadedView.h"
 
 @interface ViewController ()
+{
+    UISlider *_slider;
+    CRFadedView *fadedView;
+}
 
 @end
 
@@ -21,6 +25,7 @@
     [super viewDidLoad];
     
     [self createUI];
+    [self addSlider];
     [self testFadedView];
 }
 
@@ -34,7 +39,7 @@
 
 - (void)testFadedView
 {
-    CRFadedView *fadedView = [[CRFadedView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    fadedView = [[CRFadedView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     fadedView.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:fadedView];
     [fadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
@@ -42,18 +47,22 @@
     fadedView.label.text = @"123";
     [fadedView relayUI];
     
-    [BearConstants delayAfter:2.0 dealBlock:^{
-        [fadedView testFade];
-    }];
-    
-//    [BearConstants delayAfter:2.0 dealBlock:^{
-//        [fadedView fadeIn];
-//        [BearConstants delayAfter:2.0 dealBlock:^{
-//            [fadedView fadeOut];
-//        }];
-//    }];
+    fadedView.animationDuration = @1;
+    [fadedView testFadeLinear];
+    fadedView.layer.speed = 0;
 }
 
+- (void)addSlider
+{
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 100, 200, 30)];
+    [_slider addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:_slider];
+}
+
+- (void)valueChange:(UISlider *)slider
+{
+    fadedView.layer.timeOffset = slider.value;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
