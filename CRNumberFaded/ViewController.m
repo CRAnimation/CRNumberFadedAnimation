@@ -25,8 +25,8 @@
     [super viewDidLoad];
     
     [self createUI];
-    [self addSlider];
     [self testFadedView];
+    [self addSlider];
 }
 
 - (void)createUI
@@ -54,9 +54,10 @@
 
 - (void)addSlider
 {
-    _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 100, 200, 30)];
+    _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 100, 30)];
     [_slider addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
+    [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:fadedView parentRelation:NO distance:80 center:YES];
 }
 
 - (void)valueChange:(UISlider *)slider
