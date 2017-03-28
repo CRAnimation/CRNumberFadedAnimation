@@ -13,7 +13,10 @@
 @property (strong, nonatomic) CABasicAnimation *scaleAnimation;
 @property (strong, nonatomic) CABasicAnimation *positionAnimation;
 @property (strong, nonatomic) CAAnimationGroup *animationGroup;
+
 @property (strong, nonatomic)CAKeyframeAnimation *opacityKeyFrameAnimation;
+@property (strong, nonatomic)CAKeyframeAnimation *scaleKeyFrameAnimation;
+@property (strong, nonatomic)CAKeyframeAnimation *positionKeyFrameAnimation;
 
 @end
 
@@ -97,24 +100,37 @@
 
 - (void)testFade
 {
-    self.scaleAnimation.fromValue = self.fadeInRatio;
-    self.scaleAnimation.byValue = @1.0;
-    self.scaleAnimation.toValue = self.fadeOutRatio;
+    //  scaleKeyFrameAnimation
+    self.scaleKeyFrameAnimation.values = @[self.fadeInRatio,
+                                           @1.0,
+                                           self.fadeOutRatio
+                                           ];
+    self.scaleKeyFrameAnimation.timingFunctions = @[
+                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
+                                                    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                                    ];
     
-    self.positionAnimation.fromValue = self.fadeInOffSetPointValue;
-    self.positionAnimation.byValue = [NSValue valueWithCGPoint:self.center];
-    self.positionAnimation.toValue = self.fadeOutOffSetPointValue;
-
-    self.opacityKeyFrameAnimation.keyPath = @"opacity";
+    //  positionKeyFrameAnimation
+    self.positionKeyFrameAnimation.values = @[self.fadeInOffSetPointValue,
+                                              [NSValue valueWithCGPoint:self.center],
+                                              self.fadeOutOffSetPointValue,
+                                              ];
+    self.positionKeyFrameAnimation.timingFunctions = @[
+                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
+                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
+                                                      ];
+    
+    //  opacityKeyFrameAnimation
     self.opacityKeyFrameAnimation.values = @[@0, @1, @0];
     self.opacityKeyFrameAnimation.timingFunctions = @[
                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn],
                                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut],
                                                       ];
     
+    //  animationGroup
     self.animationGroup.animations = @[
-                                       self.scaleAnimation,
-                                       self.positionAnimation,
+                                       self.scaleKeyFrameAnimation,
+                                       self.positionKeyFrameAnimation,
                                        self.opacityKeyFrameAnimation,
                                        ];
     self.animationGroup.duration = [self.animationDuration floatValue];
@@ -173,11 +189,36 @@
 {
     if (!_opacityKeyFrameAnimation) {
         _opacityKeyFrameAnimation = [CAKeyframeAnimation animation];
+        _opacityKeyFrameAnimation.keyPath = @"opacity";
         _opacityKeyFrameAnimation.fillMode = kCAFillModeForwards;
         _opacityKeyFrameAnimation.removedOnCompletion = NO;
     }
     
     return _opacityKeyFrameAnimation;
+}
+
+- (CAKeyframeAnimation *)scaleKeyFrameAnimation
+{
+    if (!_scaleKeyFrameAnimation) {
+        _scaleKeyFrameAnimation = [CAKeyframeAnimation animation];
+        _scaleKeyFrameAnimation.keyPath = @"transform.scale";
+        _scaleKeyFrameAnimation.fillMode = kCAFillModeForwards;
+        _scaleKeyFrameAnimation.removedOnCompletion = NO;
+    }
+    
+    return _scaleKeyFrameAnimation;
+}
+
+- (CAKeyframeAnimation *)positionKeyFrameAnimation
+{
+    if (!_positionKeyFrameAnimation) {
+        _positionKeyFrameAnimation = [CAKeyframeAnimation animation];
+        _positionKeyFrameAnimation.keyPath = @"position";
+        _positionKeyFrameAnimation.fillMode = kCAFillModeForwards;
+        _positionKeyFrameAnimation.removedOnCompletion = NO;
+    }
+    
+    return _positionKeyFrameAnimation;
 }
 
 - (NSValue *)fadeOutOffSetPointValue
