@@ -21,6 +21,7 @@
 - (void)loadParameterAndCreateUI;
 - (void)fadeIn;
 - (void)fadeOut;
+- (void)testFade;
 
 - (void)relayUI;
 

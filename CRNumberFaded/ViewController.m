@@ -43,11 +43,15 @@
     [fadedView relayUI];
     
     [BearConstants delayAfter:2.0 dealBlock:^{
-        [fadedView fadeIn];
-        [BearConstants delayAfter:2.0 dealBlock:^{
-            [fadedView fadeOut];
-        }];
+        [fadedView testFade];
     }];
+    
+//    [BearConstants delayAfter:2.0 dealBlock:^{
+//        [fadedView fadeIn];
+//        [BearConstants delayAfter:2.0 dealBlock:^{
+//            [fadedView fadeOut];
+//        }];
+//    }];
 }
 
 
