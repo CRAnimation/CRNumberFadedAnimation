@@ -39,9 +39,9 @@
 - (void)initDefaultParameter
 {
     self.needLabel = @YES;
-    self.fadeInRatio = @0.5;
-    self.fadeOutRatio = @2;
-    self.animationDuration = @2.3;
+    self.fadeInRatio = @0.1;
+    self.fadeOutRatio = @4;
+    self.animationDuration = @0.6;
 }
 
 - (void)layoutSubviews
@@ -184,6 +184,7 @@
 {
     if (!_label) {
         _label = [UILabel new];
+        _label.font = SystemFont(20);
     }
     
     return _label;
