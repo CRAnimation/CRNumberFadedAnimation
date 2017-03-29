@@ -70,15 +70,15 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
     CRFadedView *fadedViewNow   = [self getFadedViewWithIndexType:CRFadeViewIndexType_Now];
     CRFadedView *fadedViewNext  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Next];
     
-    fadedViewLast.hidden = YES;
+    fadedViewLast.layer.opacity = 0;
     fadedViewLast.label.text = _strings[[self caculateIndex:_currentIndex - 1]];
     [fadedViewLast relayUI];
     
-    fadedViewNow.hidden = NO;
+    fadedViewNow.layer.opacity = 1;
     fadedViewNow.label.text = _strings[[self caculateIndex:_currentIndex]];
     [fadedViewNow relayUI];
     
-    fadedViewNext.hidden = YES;
+    fadedViewNext.layer.opacity = 0;
     fadedViewNext.label.text = _strings[[self caculateIndex:_currentIndex + 1]];
     [fadedViewNext relayUI];
 }
@@ -89,21 +89,24 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
     CRFadedView *fadedViewNow   = [self getFadedViewWithIndexType:CRFadeViewIndexType_Now];
     CRFadedView *fadedViewNext  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Next];
     
-    fadedViewLast.hidden = YES;
+    fadedViewLast.layer.opacity = 0;
+    fadedViewNow.layer.opacity = 0;
+    fadedViewNext.layer.opacity = 0;
+    
     fadedViewLast.label.text = _strings[[self caculateIndex:self.currentIndex - 1]];
     
-    fadedViewNow.hidden = NO;
     fadedViewNow.label.text = _strings[[self caculateIndex:self.currentIndex]];
     [fadedViewNow fadedViewAnimationWithType:CRFadedViewAnimationType_NormalToBig];
     
-    fadedViewNext.hidden = NO;
     fadedViewNext.label.text = _strings[[self caculateIndex:self.currentIndex + 1]];
     [fadedViewNext relayUI];
     [fadedViewNext fadedViewAnimationWithType:CRFadedViewAnimationType_SmallToNormal];
     
     [self insertSubview:fadedViewLast belowSubview:fadedViewNext];
+    
     [_fadedViews removeAllObjects];
-    [_fadedViews addObjectsFromArray:@[fadedViewLast, fadedViewNext, fadedViewNow]];
+    [_fadedViews addObjectsFromArray:self.subviews];
+//    [_fadedViews addObjectsFromArray:@[fadedViewLast, fadedViewNext, fadedViewNow]];
     
     self.currentIndex = self.currentIndex + 1;
 }
@@ -114,21 +117,24 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
     CRFadedView *fadedViewNow   = [self getFadedViewWithIndexType:CRFadeViewIndexType_Now];
     CRFadedView *fadedViewNext  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Next];
     
-    fadedViewLast.hidden = NO;
+    fadedViewLast.layer.opacity = 0;
+    fadedViewNow.layer.opacity = 0;
+    fadedViewNext.layer.opacity = 0;
+    
     fadedViewLast.label.text = _strings[[self caculateIndex:self.currentIndex - 1]];
     [fadedViewLast relayUI];
     [fadedViewLast fadedViewAnimationWithType:CRFadedViewAnimationType_BigToNormal];
     
-    fadedViewNow.hidden = NO;
     fadedViewNow.label.text = _strings[[self caculateIndex:self.currentIndex]];
     [fadedViewNow fadedViewAnimationWithType:CRFadedViewAnimationType_NormalToSmall];
     
-    fadedViewNext.hidden = YES;
     fadedViewNext.label.text = _strings[[self caculateIndex:self.currentIndex + 1]];
     
-    [self insertSubview:fadedViewLast belowSubview:fadedViewNext];
+    [self insertSubview:fadedViewNext aboveSubview:fadedViewLast];
+    
     [_fadedViews removeAllObjects];
-    [_fadedViews addObjectsFromArray:@[fadedViewLast, fadedViewNext, fadedViewNow]];
+    [_fadedViews addObjectsFromArray:self.subviews];
+//    [_fadedViews addObjectsFromArray:@[fadedViewNext, fadedViewLast, fadedViewNow]];
     
     self.currentIndex = self.currentIndex - 1;
 }

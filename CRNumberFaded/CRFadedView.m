@@ -12,7 +12,9 @@
 
 @property (strong, nonatomic) CABasicAnimation *scaleAnimation;     //考虑删除
 @property (strong, nonatomic) CABasicAnimation *positionAnimation;  //考虑删除
-@property (strong, nonatomic) CAAnimationGroup *animationGroup;     //考虑删除
+@property (strong, nonatomic) CABasicAnimation *opacityAnimation;   //考虑删除
+
+@property (strong, nonatomic) CAAnimationGroup *animationGroup;
 
 @property (strong, nonatomic)CAKeyframeAnimation *opacityKeyFrameAnimation;
 @property (strong, nonatomic)CAKeyframeAnimation *scaleKeyFrameAnimation;
@@ -82,6 +84,9 @@
             
             self.positionAnimation.fromValue = self.fadeInOffSetPointValue;
             self.positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
+            
+            self.opacityAnimation.fromValue = @0;
+            self.opacityAnimation.toValue = @1;
         }
             break;
             
@@ -92,6 +97,9 @@
             
             self.positionAnimation.fromValue = [NSValue valueWithCGPoint:self.center];
             self.positionAnimation.toValue = self.fadeInOffSetPointValue;
+            
+            self.opacityAnimation.fromValue = @1;
+            self.opacityAnimation.toValue = @0;
         }
             break;
             
@@ -102,6 +110,9 @@
          
             self.positionAnimation.fromValue = self.fadeOutOffSetPointValue;
             self.positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
+            
+            self.opacityAnimation.fromValue = @0;
+            self.opacityAnimation.toValue = @1;
         }
             break;
             
@@ -112,6 +123,9 @@
             
             self.positionAnimation.fromValue = [NSValue valueWithCGPoint:self.center];
             self.positionAnimation.toValue = self.fadeOutOffSetPointValue;
+            
+            self.opacityAnimation.fromValue = @1;
+            self.opacityAnimation.toValue = @0;
         }
             break;
             
@@ -119,7 +133,7 @@
             break;
     }
     
-    self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation];
+    self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation, self.opacityAnimation];
     self.animationGroup.duration = [self.animationDuration floatValue];
     [self.layer addAnimation:self.animationGroup forKey:nil];
 }
@@ -199,6 +213,18 @@
     }
     
     return _positionAnimation;
+}
+
+- (CABasicAnimation *)opacityAnimation
+{
+    if (!_opacityAnimation) {
+        _opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+        _opacityAnimation.fillMode = kCAFillModeForwards;
+        _opacityAnimation.removedOnCompletion = NO;
+        _opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    }
+    
+    return _opacityAnimation;
 }
 
 - (CAAnimationGroup *)animationGroup
