@@ -37,7 +37,10 @@
 - (void)createUI
 {
     numberFadedView = [[CRNumberFaded alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    numberFadedView.strings = @[@"1", @"2", @"3", @"4"];
+    numberFadedView.strings = @[@"1", @"2", @"3", @"4",
+//                                @"5",
+//                                @"6"
+                                ];
     numberFadedView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:numberFadedView];
     [numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
