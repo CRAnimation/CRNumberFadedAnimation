@@ -72,26 +72,52 @@
 }
 
 #pragma mark - Method
-- (void)fadeIn
+- (void)fadedViewAnimationWithType:(CRFadedViewAnimationType)animationType
 {
-    self.scaleAnimation.fromValue = self.fadeInRatio;
-    self.scaleAnimation.toValue = @1.0;
-    
-    self.positionAnimation.fromValue = self.fadeInOffSetPointValue;
-    self.positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
-    
-    self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation];
-    self.animationGroup.duration = [self.animationDuration floatValue];
-    [self.layer addAnimation:self.animationGroup forKey:nil];
-}
-
-- (void)fadeOut
-{
-    self.scaleAnimation.fromValue = @1.0;
-    self.scaleAnimation.toValue = self.fadeOutRatio;
-    
-    self.positionAnimation.fromValue = [NSValue valueWithCGPoint:self.center];
-    self.positionAnimation.toValue = self.fadeOutOffSetPointValue;
+    switch (animationType) {
+        case CRFadedViewAnimationType_SmallToNormal:
+        {
+            self.scaleAnimation.fromValue = self.fadeInRatio;
+            self.scaleAnimation.toValue = @1.0;
+            
+            self.positionAnimation.fromValue = self.fadeInOffSetPointValue;
+            self.positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
+        }
+            break;
+            
+        case CRFadedViewAnimationType_NormalToSmall:
+        {
+            self.scaleAnimation.fromValue = @1.0;
+            self.scaleAnimation.toValue = self.fadeInRatio;
+            
+            self.positionAnimation.fromValue = [NSValue valueWithCGPoint:self.center];
+            self.positionAnimation.toValue = self.fadeInOffSetPointValue;
+        }
+            break;
+            
+        case CRFadedViewAnimationType_BigToNormal:
+        {
+            self.scaleAnimation.fromValue = self.fadeOutRatio;
+            self.scaleAnimation.toValue = @1.0;
+         
+            self.positionAnimation.fromValue = self.fadeOutOffSetPointValue;
+            self.positionAnimation.toValue = [NSValue valueWithCGPoint:self.center];
+        }
+            break;
+            
+        case CRFadedViewAnimationType_NormalToBig:
+        {
+            self.scaleAnimation.fromValue = @1.0;
+            self.scaleAnimation.toValue = self.fadeOutRatio;
+            
+            self.positionAnimation.fromValue = [NSValue valueWithCGPoint:self.center];
+            self.positionAnimation.toValue = self.fadeOutOffSetPointValue;
+        }
+            break;
+            
+        default:
+            break;
+    }
     
     self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation];
     self.animationGroup.duration = [self.animationDuration floatValue];

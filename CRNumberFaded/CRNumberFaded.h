@@ -10,4 +10,10 @@
 
 @interface CRNumberFaded : UIView
 
+@property (strong, nonatomic) NSArray   *strings;
+@property (assign, nonatomic) BOOL      allowCircle;    //是否允许无限滚动
+
+- (void)showNextView;
+- (void)showLastView;
+
 @end

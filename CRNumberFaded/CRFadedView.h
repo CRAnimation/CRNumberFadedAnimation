@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, CRFadedViewAnimationType) {
+    CRFadedViewAnimationType_NormalToBig,
+    CRFadedViewAnimationType_BigToNormal,
+    CRFadedViewAnimationType_SmallToNormal,
+    CRFadedViewAnimationType_NormalToSmall,
+};
+
 @interface CRFadedView : UIView
 
 @property (strong, nonatomic) UILabel  *label;
@@ -19,8 +26,7 @@
 @property (strong, nonatomic) NSValue  *fadeInOffSetPointValue;     //淡入Point偏移
 
 - (void)loadParameterAndCreateUI;
-- (void)fadeIn;
-- (void)fadeOut;
+- (void)fadedViewAnimationWithType:(CRFadedViewAnimationType)animationType;
 - (void)testFadeLinear;
 
 - (void)relayUI;
