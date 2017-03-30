@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
 };
 
 
-@interface CRNumberFaded ()
+@interface CRNumberFaded () <CRFadedViewDelegate>
 {
     NSMutableArray  *_fadedViews;
     int             _toIndex;
@@ -126,6 +126,7 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     
     [self insertSubview:fadedViewLast belowSubview:fadedViewNext];
     
+    [self setDelegateOfFadedView:fadedViewNext];
     [_fadedViews removeAllObjects];
     [_fadedViews addObjectsFromArray:self.subviews];
 //    [_fadedViews addObjectsFromArray:@[fadedViewLast, fadedViewNext, fadedViewNow]];
@@ -168,6 +169,7 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     
     [self insertSubview:fadedViewNext aboveSubview:fadedViewLast];
     
+    [self setDelegateOfFadedView:fadedViewLast];
     [_fadedViews removeAllObjects];
     [_fadedViews addObjectsFromArray:self.subviews];
 //    [_fadedViews addObjectsFromArray:@[fadedViewNext, fadedViewLast, fadedViewNow]];
@@ -202,33 +204,43 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
         
         if (direction == CRFadeViewDirType_Next) {
             [self showNextViewWithDuratin:@0.2];
-            [self caculateSpeedAndScroll];
         }else if (direction == CRFadeViewDirType_Last){
             [self showLastViewWithDuratin:@0.2];
-            [self caculateSpeedAndScroll];
         }
         
     }else if (D_value >= overAndNormalSpeed) {
     
         if (direction == CRFadeViewDirType_Next) {
-            [self showNextViewWithDuratin:@0.4];
-            [self caculateSpeedAndScroll];
+            [self showNextViewWithDuratin:@0.2];
         }else if (direction == CRFadeViewDirType_Last){
-            [self showLastViewWithDuratin:@0.4];
-            [self caculateSpeedAndScroll];
+            [self showLastViewWithDuratin:@0.2];
         }
         
     }else if (D_value >= overAndSlowSpeed) {
     
         if (direction == CRFadeViewDirType_Next) {
-            [self showNextViewWithDuratin:@0.6];
-            [self caculateSpeedAndScroll];
+            [self showNextViewWithDuratin:@0.2];
         }else if (direction == CRFadeViewDirType_Last){
-            [self showLastViewWithDuratin:@0.6];
-            [self caculateSpeedAndScroll];
+            [self showLastViewWithDuratin:@0.2];
         }
         
     }
+}
+
+#pragma mark - SetDelegate
+- (void)setDelegateOfFadedView:(CRFadedView *)fadedView
+{
+    for (CRFadedView *tempFadedView in _fadedViews) {
+        tempFadedView.delegate = nil;
+    }
+    
+    fadedView.delegate = self;
+}
+
+#pragma mark - CRFadedViewDelegate
+- (void)animationDidFinishedInFadedView:(CRFadedView *)fadedView
+{
+    [self caculateSpeedAndScroll];
 }
 
 #pragma mark - Setter & Getter

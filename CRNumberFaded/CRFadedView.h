@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CRFadedView;
 
 typedef NS_ENUM(NSUInteger, CRFadedViewAnimationType) {
     CRFadedViewAnimationType_NormalToBig,
@@ -14,6 +15,12 @@ typedef NS_ENUM(NSUInteger, CRFadedViewAnimationType) {
     CRFadedViewAnimationType_SmallToNormal,
     CRFadedViewAnimationType_NormalToSmall,
 };
+
+@protocol CRFadedViewDelegate <NSObject>
+
+- (void)animationDidFinishedInFadedView:(CRFadedView *)fadedView;
+
+@end
 
 @interface CRFadedView : UIView
 
@@ -24,6 +31,7 @@ typedef NS_ENUM(NSUInteger, CRFadedViewAnimationType) {
 @property (strong, nonatomic) NSNumber *animationDuration;          //动画时间
 @property (strong, nonatomic) NSValue  *fadeOutOffSetPointValue;    //淡出Point偏移
 @property (strong, nonatomic) NSValue  *fadeInOffSetPointValue;     //淡入Point偏移
+@property (weak, nonatomic) id <CRFadedViewDelegate> delegate;
 
 - (void)loadParameterAndCreateUI;
 - (void)fadedViewAnimationWithType:(CRFadedViewAnimationType)animationType;

@@ -19,6 +19,9 @@
     
     UIButton    *_leftBtn;
     UIButton    *_rightBtn;
+    
+    UITextField *_tf;
+    UIButton    *_confirmBtn;
 }
 
 @end
@@ -32,6 +35,7 @@
 //    [self testFadedView];
     [self addSlider];
     [self addBtn];
+    [self createTfAndConfirmBtn];
 }
 
 - (void)createUI
@@ -100,6 +104,24 @@
     }
 }
 
+- (void)createTfAndConfirmBtn
+{
+    _tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    _tf.backgroundColor = [UIColor orangeColor];
+    _tf.keyboardType = UIKeyboardTypeNumberPad;
+    [self.view addSubview:_tf];
+    
+    _confirmBtn = [[UIButton alloc] init];
+    [_confirmBtn setTitle:@"confirm" forState:UIControlStateNormal];
+    _confirmBtn.backgroundColor = [UIColor orangeColor];
+    [_confirmBtn sizeToFit];
+    [_confirmBtn addTarget:self action:@selector(confirmBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_confirmBtn];
+    
+    [UIView BearV2AutoLayViewArray:(NSMutableArray *)@[_tf, _confirmBtn] layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_Start alignmentOffDis:numberFadedView.y - 70 gapDistance:30];
+}
+
+#pragma mark - Event
 - (void)valueChange:(UISlider *)slider
 {
     int value = (int)slider.value;
@@ -107,6 +129,17 @@
     [numberFadedView showToIndex:value];
     
 //    fadedView.layer.timeOffset = slider.value;
+}
+
+- (void)confirmBtnEvent
+{
+    [self resignFirstResponder];
+    
+    if ([_tf.text length] > 0) {
+        int toIndex = [_tf.text intValue];
+        NSLog(@"--toIndex:%d", toIndex);
+        [numberFadedView showToIndex:toIndex];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

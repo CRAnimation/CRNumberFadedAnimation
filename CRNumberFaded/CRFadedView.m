@@ -8,7 +8,7 @@
 
 #import "CRFadedView.h"
 
-@interface CRFadedView ()
+@interface CRFadedView () <CAAnimationDelegate>
 
 @property (strong, nonatomic) CABasicAnimation *scaleAnimation;     //考虑删除
 @property (strong, nonatomic) CABasicAnimation *positionAnimation;  //考虑删除
@@ -198,7 +198,7 @@
         _scaleAnimation.toValue = @1.0;
         _scaleAnimation.fillMode = kCAFillModeForwards;
         _scaleAnimation.removedOnCompletion = NO;
-        _scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        _scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     }
     
     return _scaleAnimation;
@@ -210,7 +210,7 @@
         _positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
         _positionAnimation.fillMode = kCAFillModeForwards;
         _positionAnimation.removedOnCompletion = NO;
-        _positionAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        _positionAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     }
     
     return _positionAnimation;
@@ -222,7 +222,7 @@
         _opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
         _opacityAnimation.fillMode = kCAFillModeForwards;
         _opacityAnimation.removedOnCompletion = NO;
-        _opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        _opacityAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     }
     
     return _opacityAnimation;
@@ -234,7 +234,8 @@
         _animationGroup = [CAAnimationGroup animation];
         _animationGroup.fillMode = kCAFillModeForwards;
         _animationGroup.removedOnCompletion = NO;
-        _animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+        _animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+        _animationGroup.delegate = self;
     }
     
     return _animationGroup;
@@ -292,6 +293,14 @@
     }
     
     return _fadeInOffSetPointValue;
+}
+
+#pragma mark - CAAnimationDelegate
+- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    if ([_delegate respondsToSelector:@selector(animationDidFinishedInFadedView:)]) {
+        [_delegate animationDidFinishedInFadedView:self];
+    }
 }
 
 @end
