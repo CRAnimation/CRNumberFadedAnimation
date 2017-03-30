@@ -15,9 +15,17 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
     CRFadeViewIndexType_Next,
 };
 
+typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
+    CRFadeViewDirType_Null,
+    CRFadeViewDirType_Last,
+    CRFadeViewDirType_Next,
+};
+
+
 @interface CRNumberFaded ()
 {
     NSMutableArray  *_fadedViews;
+    int             _toIndex;
 }
 
 @property (assign, nonatomic) int currentIndex;
@@ -85,12 +93,26 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
 
 - (void)showNextView
 {
+    [self showNextViewWithDuratin:nil];
+}
+
+- (void)showNextViewWithDuratin:(NSNumber *)duration
+{
+    if (!duration) {
+        duration = @0.6;
+    }
+    
     CRFadedView *fadedViewLast  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Last];
     CRFadedView *fadedViewNow   = [self getFadedViewWithIndexType:CRFadeViewIndexType_Now];
     CRFadedView *fadedViewNext  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Next];
     
+    fadedViewLast.animationDuration = duration;
     fadedViewLast.layer.opacity = 0;
+    
+    fadedViewNow.animationDuration = duration;
     fadedViewNow.layer.opacity = 0;
+    
+    fadedViewNext.animationDuration = duration;
     fadedViewNext.layer.opacity = 0;
     
     fadedViewLast.label.text = _strings[[self caculateIndex:self.currentIndex - 1]];
@@ -113,12 +135,26 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
 
 - (void)showLastView
 {
+    [self showLastViewWithDuratin:nil];
+}
+
+- (void)showLastViewWithDuratin:(NSNumber *)duration
+{
+    if (!duration) {
+        duration = @0.6;
+    }
+    
     CRFadedView *fadedViewLast  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Last];
     CRFadedView *fadedViewNow   = [self getFadedViewWithIndexType:CRFadeViewIndexType_Now];
     CRFadedView *fadedViewNext  = [self getFadedViewWithIndexType:CRFadeViewIndexType_Next];
     
+    fadedViewLast.animationDuration = duration;
     fadedViewLast.layer.opacity = 0;
+    
+    fadedViewNow.animationDuration = duration;
     fadedViewNow.layer.opacity = 0;
+    
+    fadedViewNext.animationDuration = duration;
     fadedViewNext.layer.opacity = 0;
     
     fadedViewLast.label.text = _strings[[self caculateIndex:self.currentIndex - 1]];
@@ -137,6 +173,62 @@ typedef NS_ENUM(NSUInteger, CRFadeViewIndexType) {
 //    [_fadedViews addObjectsFromArray:@[fadedViewNext, fadedViewLast, fadedViewNow]];
     
     self.currentIndex = self.currentIndex - 1;
+}
+
+- (void)showToIndex:(int)toIndex
+{
+    _toIndex = toIndex;
+    
+    if (_toIndex != _currentIndex) {
+        [self caculateSpeedAndScroll];
+    }
+}
+
+- (void)caculateSpeedAndScroll
+{
+    int overAndFastSpeed = 3;
+    int overAndNormalSpeed = 2;
+    int overAndSlowSpeed = 1;
+    
+    CRFadeViewDirType direction = CRFadeViewDirType_Null;
+    if (_toIndex > _currentIndex) {
+        direction = CRFadeViewDirType_Next;
+    }else if (_toIndex < _currentIndex){
+        direction = CRFadeViewDirType_Last;
+    }
+    
+    int D_value = abs(_toIndex - _currentIndex);
+    if (D_value >= overAndFastSpeed) {
+        
+        if (direction == CRFadeViewDirType_Next) {
+            [self showNextViewWithDuratin:@0.2];
+            [self caculateSpeedAndScroll];
+        }else if (direction == CRFadeViewDirType_Last){
+            [self showLastViewWithDuratin:@0.2];
+            [self caculateSpeedAndScroll];
+        }
+        
+    }else if (D_value >= overAndNormalSpeed) {
+    
+        if (direction == CRFadeViewDirType_Next) {
+            [self showNextViewWithDuratin:@0.4];
+            [self caculateSpeedAndScroll];
+        }else if (direction == CRFadeViewDirType_Last){
+            [self showLastViewWithDuratin:@0.4];
+            [self caculateSpeedAndScroll];
+        }
+        
+    }else if (D_value >= overAndSlowSpeed) {
+    
+        if (direction == CRFadeViewDirType_Next) {
+            [self showNextViewWithDuratin:@0.6];
+            [self caculateSpeedAndScroll];
+        }else if (direction == CRFadeViewDirType_Last){
+            [self showLastViewWithDuratin:@0.6];
+            [self caculateSpeedAndScroll];
+        }
+        
+    }
 }
 
 #pragma mark - Setter & Getter

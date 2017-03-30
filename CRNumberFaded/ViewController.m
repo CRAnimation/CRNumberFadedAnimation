@@ -36,11 +36,14 @@
 
 - (void)createUI
 {
+    NSMutableArray *strings = [NSMutableArray new];
+    for (int i = 0; i < 100; i++) {
+        NSString *numberString = [NSString stringWithFormat:@"%d", i];
+        [strings addObject:numberString];
+    }
+    
     numberFadedView = [[CRNumberFaded alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
-    numberFadedView.strings = @[@"1", @"2", @"3", @"4",
-//                                @"5",
-//                                @"6"
-                                ];
+    numberFadedView.strings = strings;
     numberFadedView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:numberFadedView];
     [numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
@@ -64,6 +67,8 @@
 - (void)addSlider
 {
     _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 100, 30)];
+    _slider.minimumValue = 0;
+    _slider.maximumValue = 100;
     [_slider addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:numberFadedView parentRelation:NO distance:80 center:YES];
@@ -97,7 +102,11 @@
 
 - (void)valueChange:(UISlider *)slider
 {
-    fadedView.layer.timeOffset = slider.value;
+    int value = (int)slider.value;
+    NSLog(@"--value:%d", value);
+    [numberFadedView showToIndex:value];
+    
+//    fadedView.layer.timeOffset = slider.value;
 }
 
 - (void)didReceiveMemoryWarning {
