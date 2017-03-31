@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
 {
     NSMutableArray  *_fadedViews;
     int             _toIndex;
+    NSMutableArray  *_duringArray;
 }
 
 @property (assign, nonatomic) int currentIndex;
@@ -41,6 +42,7 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     if (self) {
         [self initSetPara];
         [self createUI];
+        [self generateDuringArray];
     }
     
     return self;
@@ -186,12 +188,44 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     }
 }
 
+- (CGFloat)caculateDurationWithD_Value:(int)D_Value
+{
+    CGFloat maxDuration = 0.8;
+    
+    CGFloat a = 0.02;
+    CGFloat powValue = pow(D_Value, 2);
+    CGFloat duration = 1.0/2*a*powValue;
+    
+    duration = maxDuration - duration;
+    if (duration < 0.1) {
+        duration = 0.1;
+    }
+//    NSLog(@"--D_Value:%d duration:%f", D_Value, duration);
+    return duration;
+}
+
+- (void)generateDuringArray
+{
+    _duringArray = [NSMutableArray new];
+    for (int D_value = 0; D_value < 20; D_value++) {
+        CGFloat during = [self caculateDurationWithD_Value:D_value];
+        [_duringArray addObject:[NSNumber numberWithFloat:during]];
+    }
+}
+
+- (CGFloat)getDurationFromDuringArrayWithD_Value:(int)D_Value
+{
+    if (D_Value > [_duringArray count] - 1) {
+        D_Value = (int)[_duringArray count] - 1;
+    }
+    
+    CGFloat during = [_duringArray[D_Value] floatValue];
+        NSLog(@"--D_Value:%d duration:%f", D_Value, during);
+    return during;
+}
+
 - (void)caculateSpeedAndScroll
 {
-    int overAndFastSpeed = 3;
-    int overAndNormalSpeed = 2;
-    int overAndSlowSpeed = 1;
-    
     CRFadeViewDirType direction = CRFadeViewDirType_Null;
     if (_toIndex > _currentIndex) {
         direction = CRFadeViewDirType_Next;
@@ -200,30 +234,12 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     }
     
     int D_value = abs(_toIndex - _currentIndex);
-    if (D_value >= overAndFastSpeed) {
-        
-        if (direction == CRFadeViewDirType_Next) {
-            [self showNextViewWithDuratin:@0.2];
-        }else if (direction == CRFadeViewDirType_Last){
-            [self showLastViewWithDuratin:@0.2];
-        }
-        
-    }else if (D_value >= overAndNormalSpeed) {
-    
-        if (direction == CRFadeViewDirType_Next) {
-            [self showNextViewWithDuratin:@0.2];
-        }else if (direction == CRFadeViewDirType_Last){
-            [self showLastViewWithDuratin:@0.2];
-        }
-        
-    }else if (D_value >= overAndSlowSpeed) {
-    
-        if (direction == CRFadeViewDirType_Next) {
-            [self showNextViewWithDuratin:@0.2];
-        }else if (direction == CRFadeViewDirType_Last){
-            [self showLastViewWithDuratin:@0.2];
-        }
-        
+    CGFloat duration = [self getDurationFromDuringArrayWithD_Value:D_value];
+//    duration = 0.1;
+    if (direction == CRFadeViewDirType_Next) {
+        [self showNextViewWithDuratin:[NSNumber numberWithFloat:duration]];
+    }else if (direction == CRFadeViewDirType_Last){
+        [self showLastViewWithDuratin:[NSNumber numberWithFloat:duration]];
     }
 }
 
