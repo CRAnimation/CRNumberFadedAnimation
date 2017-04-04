@@ -133,9 +133,18 @@
             break;
     }
     
-    self.animationGroup.animations = @[self.scaleAnimation, self.positionAnimation, self.opacityAnimation];
-    self.animationGroup.duration = [self.animationDuration floatValue];
-    [self.layer addAnimation:self.animationGroup forKey:nil];
+    CAAnimationGroup *_animationGroup1 = [CAAnimationGroup animation];
+    _animationGroup1.fillMode = kCAFillModeForwards;
+    _animationGroup1.removedOnCompletion = NO;
+    _animationGroup1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    _animationGroup1.delegate = self;
+    
+    _animationGroup1.animations = @[self.scaleAnimation, self.positionAnimation, self.opacityAnimation];
+    for (CABasicAnimation *basicAniamtion in _animationGroup1.animations) {
+        basicAniamtion.duration = [self.animationDuration floatValue];
+    }
+    _animationGroup1.duration = [self.animationDuration floatValue];
+    [self.layer addAnimation:_animationGroup1 forKey:nil];
 }
 
 - (void)testFadeLinear

@@ -200,6 +200,11 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     if (duration < 0.1) {
         duration = 0.1;
     }
+    
+//    if (duration > 0.6) {
+//        duration = 4.0;
+//    }
+    
 //    NSLog(@"--D_Value:%d duration:%f", D_Value, duration);
     return duration;
 }
@@ -220,7 +225,7 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     }
     
     CGFloat during = [_duringArray[D_Value] floatValue];
-        NSLog(@"--D_Value:%d duration:%f", D_Value, during);
+//        NSLog(@"--D_Value:%d duration:%f", D_Value, during);
     return during;
 }
 
