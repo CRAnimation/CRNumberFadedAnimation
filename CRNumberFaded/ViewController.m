@@ -72,7 +72,7 @@
 {
     _slider = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 100, 30)];
     _slider.minimumValue = 0;
-    _slider.maximumValue = 100;
+    _slider.maximumValue = 20;
     [_slider addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:numberFadedView parentRelation:NO distance:80 center:YES];

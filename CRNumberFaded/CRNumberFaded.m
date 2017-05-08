@@ -21,12 +21,26 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     CRFadeViewDirType_Next,
 };
 
+struct CurrentLoopPara {
+    int start;
+    int end;
+    int count;
+};
 
 @interface CRNumberFaded () <CRFadedViewDelegate>
 {
     NSMutableArray  *_fadedViews;
     int             _toIndex;
     NSMutableArray  *_duringArray;
+    
+    NSNumber *_startUnSkipCount;  //开头几个不允许跳过
+    NSNumber *_endUnSkipCount;    //末尾几个不允许跳过
+    NSNumber *_middleShowAllCount;//中间跳过后允许显示的总数量
+    NSMutableArray  *_unSkipArray;
+    BOOL _animating;//是否正在执行动画
+    
+    struct CurrentLoopPara  _currentLoopPara;
+    int                     _easyInEasyOutFadeCount;
 }
 
 @property (assign, nonatomic) int currentIndex;
@@ -52,6 +66,13 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
 {
     _currentIndex = 0;
     self.allowCircle = YES;
+    
+    _startUnSkipCount = @5;
+    _endUnSkipCount = @5;
+    _middleShowAllCount = @10;
+    _unSkipArray = [NSMutableArray new];
+    _easyInEasyOutFadeCount = 2;
+    _animating = NO;
 }
 
 - (void)createUI
@@ -184,28 +205,37 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     _toIndex = toIndex;
     
     if (_toIndex != _currentIndex) {
-        [self caculateSpeedAndScroll];
+        
+        int D_value = abs(_toIndex - _currentIndex);
+        _currentLoopPara.start = _currentIndex;
+        _currentLoopPara.end = _toIndex;
+        _currentLoopPara.count = D_value;
+        
+        //  动画已停止，可以立即执行新的动画
+        if (_animating == NO) {
+            [self caculateSpeedAndScroll];
+        }
     }
 }
 
 - (CGFloat)caculateDurationWithD_Value:(int)D_Value
 {
-    CGFloat maxDuration = 0.8;
+    CGFloat maxDuration = 0.4;
+    CGFloat minDuration = 0.1;
     
-    CGFloat a = 0.02;
+    CGFloat a = 0.045;
     CGFloat powValue = pow(D_Value, 2);
     CGFloat duration = 1.0/2*a*powValue;
     
     duration = maxDuration - duration;
-    if (duration < 0.1) {
-        duration = 0.1;
+    if (duration < minDuration) {
+        duration = minDuration;
     }
     
-//    if (duration > 0.6) {
-//        duration = 4.0;
-//    }
-    
-//    NSLog(@"--D_Value:%d duration:%f", D_Value, duration);
+    if (duration > maxDuration) {
+        duration = maxDuration;
+    }
+
     return duration;
 }
 
@@ -216,6 +246,8 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
         CGFloat during = [self caculateDurationWithD_Value:D_value];
         [_duringArray addObject:[NSNumber numberWithFloat:during]];
     }
+    
+    NSLog(@"_duringArray:%@", _duringArray);
 }
 
 - (CGFloat)getDurationFromDuringArrayWithD_Value:(int)D_Value
@@ -223,9 +255,8 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     if (D_Value > [_duringArray count] - 1) {
         D_Value = (int)[_duringArray count] - 1;
     }
-    
     CGFloat during = [_duringArray[D_Value] floatValue];
-//        NSLog(@"--D_Value:%d duration:%f", D_Value, during);
+    
     return during;
 }
 
@@ -239,8 +270,9 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
     }
     
     int D_value = abs(_toIndex - _currentIndex);
+    _animating = YES;
+    
     CGFloat duration = [self getDurationFromDuringArrayWithD_Value:D_value];
-//    duration = 0.1;
     if (direction == CRFadeViewDirType_Next) {
         [self showNextViewWithDuratin:[NSNumber numberWithFloat:duration]];
     }else if (direction == CRFadeViewDirType_Last){
@@ -261,7 +293,12 @@ typedef NS_ENUM(NSUInteger, CRFadeViewDirType) {
 #pragma mark - CRFadedViewDelegate
 - (void)animationDidFinishedInFadedView:(CRFadedView *)fadedView
 {
-    [self caculateSpeedAndScroll];
+    NSLog(@"current index:%d", _currentIndex);
+    if (_currentIndex == _toIndex) {
+        _animating = NO;
+    }else{
+        [self caculateSpeedAndScroll];
+    }
 }
 
 #pragma mark - Setter & Getter
