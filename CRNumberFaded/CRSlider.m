@@ -34,11 +34,11 @@
 - (void)initPara
 {
     self.value = 0.0;
-    self.minimumValue = 0.0;
-    self.maximumValue = 1.0;
+    self.minimumValue = 0.5;
+    self.maximumValue = 2.0;
     self.poleImageVOffX = self.width * 0.1;
     _thumbImageVWidth = self.height < self.width ? self.height : self.width;
-    _animationTotalDuring = 1.0;
+    _animationTotalDuring = 0.6;
     _animationMinDuring = 0.2;
 }
 
@@ -67,14 +67,14 @@
 
 - (void)relayThumbImagV
 {
-    CGFloat thumbImageCenterX = [self caculateThumbImageVCenterXWithValue:self.value];
+    CGFloat thumbImageCenterX = [self caculateThumbImageVCenterXWithValue:self.value - self.minimumValue];
     [_thumbImageV setCenterX:thumbImageCenterX];
 }
 
 - (CGFloat)caculateRatioWithValue:(CGFloat)value
 {
     CGFloat ratio = 0;
-    if (value == 0) {
+    if (value <= 0) {
         ratio = 0;
     }else{
         ratio = 1.0 * value / (self.maximumValue - self.minimumValue);
@@ -137,17 +137,20 @@
     if (point.x <= 0) {
         self.value = 0;
     }else{
-        self.value = 1.0 * point.x / _poleImageV.width;
+        self.value = self.minimumValue + 1.0 * point.x / _poleImageV.width * (self.maximumValue - self.minimumValue);
     }
-    
-    NSLog(@"point:%@", NSStringFromCGPoint(point));
 }
 
 #pragma mark - Setter & Getter
 - (void)setValue:(float)value
 {
-    _value = value;
-//    [self relayUI];
+    if (value <= 0) {
+        _value = _minimumValue;
+    }else{
+        _value = value;
+    }
+    
+    NSLog(@"value:%f", _value);
 }
 
 @end
