@@ -10,6 +10,7 @@
 #import "CRNumberFaded.h"
 
 #import "CRFadedView.h"
+#import "CRSlider.h"
 
 @interface ViewController ()
 {
@@ -36,6 +37,8 @@
     [self addSlider];
     [self addBtn];
     [self createTfAndConfirmBtn];
+    
+    [self createCRSlider];
 }
 
 - (void)createUI
@@ -51,6 +54,14 @@
     numberFadedView.backgroundColor = [UIColor orangeColor];
     [self.view addSubview:numberFadedView];
     [numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
+}
+
+- (void)createCRSlider
+{
+    CRSlider *slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 40)];
+    slider.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:slider];
+    [slider BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:20 center:YES];
 }
 
 - (void)testFadedView

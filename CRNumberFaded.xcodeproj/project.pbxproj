@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		090345501E82C7350061BE0C /* CRNumberFaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903454F1E82C7350061BE0C /* CRNumberFaded.m */; };
 		090345531E82CC4C0061BE0C /* CRFadedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 090345521E82CC4C0061BE0C /* CRFadedView.m */; };
+		0985476D1EC52F6300E65846 /* CRSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0985476C1EC52F6300E65846 /* CRSlider.m */; };
 		09C5C41A1E82BE6E0091EEAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C4191E82BE6E0091EEAD /* main.m */; };
 		09C5C41D1E82BE6E0091EEAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C41C1E82BE6E0091EEAD /* AppDelegate.m */; };
 		09C5C4201E82BE6E0091EEAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C41F1E82BE6E0091EEAD /* ViewController.m */; };
@@ -45,6 +46,8 @@
 		0903454F1E82C7350061BE0C /* CRNumberFaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRNumberFaded.m; sourceTree = "<group>"; };
 		090345511E82CC4C0061BE0C /* CRFadedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRFadedView.h; sourceTree = "<group>"; };
 		090345521E82CC4C0061BE0C /* CRFadedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRFadedView.m; sourceTree = "<group>"; };
+		0985476B1EC52F6300E65846 /* CRSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSlider.h; sourceTree = "<group>"; };
+		0985476C1EC52F6300E65846 /* CRSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSlider.m; sourceTree = "<group>"; };
 		09C5C4151E82BE6E0091EEAD /* CRNumberFaded.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRNumberFaded.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C5C4191E82BE6E0091EEAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09C5C41B1E82BE6E0091EEAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				0903454F1E82C7350061BE0C /* CRNumberFaded.m */,
 				090345511E82CC4C0061BE0C /* CRFadedView.h */,
 				090345521E82CC4C0061BE0C /* CRFadedView.m */,
+				0985476B1EC52F6300E65846 /* CRSlider.h */,
+				0985476C1EC52F6300E65846 /* CRSlider.m */,
 				09C5C4211E82BE6E0091EEAD /* Main.storyboard */,
 				09C5C4241E82BE6E0091EEAD /* Assets.xcassets */,
 				09C5C4261E82BE6E0091EEAD /* LaunchScreen.storyboard */,
@@ -475,6 +480,7 @@
 				090345501E82C7350061BE0C /* CRNumberFaded.m in Sources */,
 				09C5C4201E82BE6E0091EEAD /* ViewController.m in Sources */,
 				09C5C41D1E82BE6E0091EEAD /* AppDelegate.m in Sources */,
+				0985476D1EC52F6300E65846 /* CRSlider.m in Sources */,
 				09C5C41A1E82BE6E0091EEAD /* main.m in Sources */,
 				090345531E82CC4C0061BE0C /* CRFadedView.m in Sources */,
 			);
