@@ -19,6 +19,8 @@
 		09C5C4331E82BE6F0091EEAD /* CRNumberFadedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C4321E82BE6F0091EEAD /* CRNumberFadedTests.m */; };
 		09C5C43E1E82BE6F0091EEAD /* CRNumberFadedUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C5C43D1E82BE6F0091EEAD /* CRNumberFadedUITests.m */; };
 		09CA34B11EC612E300EA80A2 /* PerformanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B01EC612E300EA80A2 /* PerformanceVC.m */; };
+		09CA34B41EC614E900EA80A2 /* CRSliderIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B31EC614E900EA80A2 /* CRSliderIndicator.m */; };
+		09CA34B71EC6163D00EA80A2 /* CRSliderIndicatorChip.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B61EC6163D00EA80A2 /* CRSliderIndicatorChip.m */; };
 		98FC6CAA0994536BA34ADC11 /* libPods-CRNumberFadedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */; };
 		B904CE5B9A3F38ED878F3D1E /* libPods-CRNumberFadedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */; };
 		E12630B7F8A2DAAEE49B8133 /* libPods-CRNumberFaded.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */; };
@@ -67,6 +69,10 @@
 		09C5C43F1E82BE6F0091EEAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09CA34AF1EC612E300EA80A2 /* PerformanceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformanceVC.h; sourceTree = "<group>"; };
 		09CA34B01EC612E300EA80A2 /* PerformanceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformanceVC.m; sourceTree = "<group>"; };
+		09CA34B21EC614E900EA80A2 /* CRSliderIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSliderIndicator.h; sourceTree = "<group>"; };
+		09CA34B31EC614E900EA80A2 /* CRSliderIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSliderIndicator.m; sourceTree = "<group>"; };
+		09CA34B51EC6163D00EA80A2 /* CRSliderIndicatorChip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSliderIndicatorChip.h; sourceTree = "<group>"; };
+		09CA34B61EC6163D00EA80A2 /* CRSliderIndicatorChip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSliderIndicatorChip.m; sourceTree = "<group>"; };
 		3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFaded.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +149,10 @@
 				090345521E82CC4C0061BE0C /* CRFadedView.m */,
 				0985476B1EC52F6300E65846 /* CRSlider.h */,
 				0985476C1EC52F6300E65846 /* CRSlider.m */,
+				09CA34B21EC614E900EA80A2 /* CRSliderIndicator.h */,
+				09CA34B31EC614E900EA80A2 /* CRSliderIndicator.m */,
+				09CA34B51EC6163D00EA80A2 /* CRSliderIndicatorChip.h */,
+				09CA34B61EC6163D00EA80A2 /* CRSliderIndicatorChip.m */,
 				09C5C4211E82BE6E0091EEAD /* Main.storyboard */,
 				09C5C4241E82BE6E0091EEAD /* Assets.xcassets */,
 				09C5C4261E82BE6E0091EEAD /* LaunchScreen.storyboard */,
@@ -483,8 +493,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09CA34B11EC612E300EA80A2 /* PerformanceVC.m in Sources */,
+				09CA34B71EC6163D00EA80A2 /* CRSliderIndicatorChip.m in Sources */,
 				090345501E82C7350061BE0C /* CRNumberFaded.m in Sources */,
 				09C5C4201E82BE6E0091EEAD /* ViewController.m in Sources */,
+				09CA34B41EC614E900EA80A2 /* CRSliderIndicator.m in Sources */,
 				09C5C41D1E82BE6E0091EEAD /* AppDelegate.m in Sources */,
 				0985476D1EC52F6300E65846 /* CRSlider.m in Sources */,
 				09C5C41A1E82BE6E0091EEAD /* main.m in Sources */,

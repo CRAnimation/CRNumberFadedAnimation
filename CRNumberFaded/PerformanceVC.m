@@ -9,11 +9,13 @@
 #import "PerformanceVC.h"
 #import "CRNumberFaded.h"
 #import "CRSlider.h"
+#import "CRSliderIndicator.h"
 
 @interface PerformanceVC ()
 {
     CRNumberFaded *_numberFadedView;
     CRSlider *_slider;
+    CRSliderIndicator *_sliderIndicator;
 }
 @end
 
@@ -28,8 +30,16 @@
 
 - (void)createUI
 {
+    [self createSliderIndicator];
     [self createNumberFadedView];
     [self createCRSlider];
+}
+
+- (void)createSliderIndicator
+{
+    _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 300)];
+    [self.view addSubview:_sliderIndicator];
+    [_sliderIndicator BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:20 center:YES];
 }
 
 - (void)createNumberFadedView
@@ -43,7 +53,7 @@
     _numberFadedView = [[CRNumberFaded alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     _numberFadedView.strings = strings;
     _numberFadedView.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:_numberFadedView];
+    [_sliderIndicator addSubview:_numberFadedView];
     [_numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
 }
 
@@ -55,9 +65,10 @@
     _slider.backgroundColor = [UIColor blueColor];
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
-    [_slider BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:20 center:YES];
+    [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:20 center:YES];
 }
 
+#pragma mark - Event
 - (void)testSliderChanged:(CRSlider *)slider
 {
     int index = (int)ceil(slider.value);
