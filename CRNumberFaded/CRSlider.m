@@ -150,6 +150,7 @@
         _value = value;
     }
     
+    [self sendActionsForControlEvents:UIControlEventValueChanged];
     NSLog(@"value:%f", _value);
 }
 

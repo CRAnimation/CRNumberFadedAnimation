@@ -59,9 +59,19 @@
 - (void)createCRSlider
 {
     CRSlider *slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 40)];
+    slider.minimumValue = 0;
+    slider.maximumValue = 20;
     slider.backgroundColor = [UIColor blueColor];
+    [slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:slider];
     [slider BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:20 center:YES];
+}
+
+- (void)testSliderChanged:(CRSlider *)slider
+{
+    int index = (int)ceil(slider.value);
+    NSLog(@"--1 slider value:%d", index);
+    [numberFadedView showToIndex:index];
 }
 
 - (void)testFadedView
