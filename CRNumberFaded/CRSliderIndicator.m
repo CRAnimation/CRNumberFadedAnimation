@@ -18,6 +18,7 @@
     CGPoint _circleCenter;
     CGFloat _y0;
     CRSliderIndicatorChip *lastNearestChipView;
+    NSArray *_strings;
     
     NSMutableArray <CRSliderIndicatorChip *> *_chipViews;
 }
@@ -26,11 +27,12 @@
 
 @implementation CRSliderIndicator
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame withStrings:(NSArray *)strings
 {
     self = [super initWithFrame:frame];
     
     if (self) {
+        _strings = strings;
         [self initPara];
         [self createUI];
         self.circleCenterX = 0;
@@ -53,9 +55,9 @@
 {
     _chipViews = [NSMutableArray new];
     
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < [_strings count]; i++) {
         CRSliderIndicatorChip *chipView = [[CRSliderIndicatorChip alloc] initWithCommonFrame];
-        chipView.string = [NSString stringWithFormat:@"%d", i];
+        chipView.string = [NSString stringWithFormat:@"%@", _strings[i]];
         [self addSubview:chipView];
         [_chipViews addObject:chipView];
     }

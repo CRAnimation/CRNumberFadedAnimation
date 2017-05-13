@@ -14,4 +14,6 @@
 @property (assign, nonatomic) CGFloat   r;
 @property (assign, nonatomic) CGFloat   toCircleCenterYDistance;
 
+- (instancetype)initWithFrame:(CGRect)frame withStrings:(NSArray *)strings;
+
 @end

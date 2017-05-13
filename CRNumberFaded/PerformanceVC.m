@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     LRLablesStatusDrawIn,
 };
 
+#define maxNum 24
+
 @interface PerformanceVC () <CRSliderDelegate, CRNumberFadedDelegate>
 {
     UIView *_customNaviBarView;
@@ -70,8 +72,10 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 
 - (void)createSliderIndicator
 {
+    NSArray *strings = @[@"0", @"6", @"12", @"18", @"24"];
+    
     CGFloat sliderIndicatorHeight = 1.0 * (HEIGHT - _customNaviBarView.maxY) / 4 * 3;
-    _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, _customNaviBarView.maxY, WIDTH, sliderIndicatorHeight)];
+    _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, _customNaviBarView.maxY, WIDTH, sliderIndicatorHeight) withStrings:strings];
     [self.view addSubview:_sliderIndicator];
     
     //  UI
@@ -98,7 +102,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 - (void)createNumberFadedView
 {
     NSMutableArray *strings = [NSMutableArray new];
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < maxNum; i++) {
         NSString *numberString = [NSString stringWithFormat:@"%d", i];
         [strings addObject:numberString];
     }
@@ -111,7 +115,6 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     _numberFadedView.backgroundColor = [UIColor clearColor];
     [_sliderIndicator addSubview:_numberFadedView];
     [_numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
-    [_numberFadedView setY:_numberFadedView.y - 50];
 }
 
 - (void)createLeftAndRightLabel
@@ -138,7 +141,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 40)];
     _slider.delegate = self;
     _slider.minimumValue = 0;
-    _slider.maximumValue = 20;
+    _slider.maximumValue = maxNum;
     _slider.backgroundColor = [UIColor clearColor];
     [_slider.poleImageV setY:_slider.poleImageV.y + _slider.height / 6.0 * 1];
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
@@ -179,7 +182,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 #pragma mark - Event
 - (void)testSliderChanged:(CRSlider *)slider
 {
-    int index = (int)ceil(slider.value);
+    int index = (int)round(slider.value);
     NSLog(@"--1 slider value:%d", index);
     [_numberFadedView showToIndex:index];
 }
@@ -195,13 +198,12 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     CGPoint tempCenter = [_sliderIndicator convertPoint:thumbImageVCenter fromView:slider];
     [_sliderIndicator setCircleCenterX:thumbImageVCenter.x];
     
-    NSLog(@"thumbImageVCenter:%@ tempCenter:%@", NSStringFromCGPoint(thumbImageVCenter), NSStringFromCGPoint(tempCenter));
+//    NSLog(@"thumbImageVCenter:%@ tempCenter:%@", NSStringFromCGPoint(thumbImageVCenter), NSStringFromCGPoint(tempCenter));
 }
 
 #pragma mark - CRFadedViewDelegate
 - (void)willShowLastOneFadeAnimationWithString:(NSString *)string
 {
-    NSLog(@"--string:%@", string);
     if (self.lrLablesStatus != LRLablesStatusDrawIn) {
         self.lrLablesStatus = LRLablesStatusDrawIn;
         [self leftAndRightLabelAnimationWithStatus:self.lrLablesStatus string:string];
@@ -210,8 +212,6 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 
 - (void)willStartFirstAnimationWithString:(NSString *)string
 {
-    NSLog(@"--start:%@", string);
-    
     if (self.lrLablesStatus != LRLablesStatusSpread) {
         self.lrLablesStatus = LRLablesStatusSpread;
         [self leftAndRightLabelAnimationWithStatus:self.lrLablesStatus string:string];
