@@ -33,6 +33,9 @@
     [self createSliderIndicator];
     [self createNumberFadedView];
     [self createCRSlider];
+    
+    _sliderIndicator.r = _slider.thumbImageV.width / 2.0;
+    _sliderIndicator.toCircleCenterYDistance = _slider.y + _slider.height / 2.0 - _sliderIndicator.maxY;
 }
 
 - (void)createSliderIndicator
@@ -63,10 +66,10 @@
     _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 40)];
     _slider.minimumValue = 0;
     _slider.maximumValue = 20;
-    _slider.backgroundColor = [UIColor blueColor];
+    _slider.backgroundColor = [UIColor clearColor];
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
-    [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:20 center:YES];
+    [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:-20 center:YES];
 }
 
 #pragma mark - Event
