@@ -67,6 +67,7 @@
     _slider.minimumValue = 0;
     _slider.maximumValue = 20;
     _slider.backgroundColor = [UIColor clearColor];
+    [_slider.poleImageV setY:_slider.poleImageV.y + _slider.height / 6.0 * 1];
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:-20 center:YES];
