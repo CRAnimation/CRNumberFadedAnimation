@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "PerformanceVC.h"
-#import "TestViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +20,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     ViewController *vc = [ViewController new];
-    TestViewController *testVC = [TestViewController new];
     
     PerformanceVC *performanceVC = [PerformanceVC new];
     

@@ -18,7 +18,6 @@
     CGPoint _circleCenter;
     CGFloat _y0;
     
-    UIDynamicAnimator *_dynamicAnimator;
     NSMutableArray *_chipViews;
 }
 
@@ -46,7 +45,6 @@
     _circleCenter = CGPointMake(_circleCenterX, self.height + _toCircleCenterYDistance);
     _y0 = _circleCenter.y - _toCircleCenterYDistance;
     
-    _dynamicAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
     [self generateChips];
 }
 
@@ -190,23 +188,6 @@
 {
     _path = [self generatePath];
     _maskLayer.path = _path.CGPath;
-}
-
-#pragma mark - Behavior
-- (UIGravityBehavior *)addGravityBehavior:(id <UIDynamicItem>)item
-{
-    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] init];
-    [gravityBehavior addItem:item];
-    
-    return gravityBehavior;
-}
-
-- (UICollisionBehavior *)addCollisionBehavior:(id <UIDynamicItem>)item
-{
-    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
-    [collisionBehavior addItem:item];
-    
-    return collisionBehavior;
 }
 
 #pragma mark - Setter & Getter

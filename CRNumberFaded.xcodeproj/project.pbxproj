@@ -21,7 +21,6 @@
 		09CA34B11EC612E300EA80A2 /* PerformanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B01EC612E300EA80A2 /* PerformanceVC.m */; };
 		09CA34B41EC614E900EA80A2 /* CRSliderIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B31EC614E900EA80A2 /* CRSliderIndicator.m */; };
 		09CA34B71EC6163D00EA80A2 /* CRSliderIndicatorChip.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B61EC6163D00EA80A2 /* CRSliderIndicatorChip.m */; };
-		09CA34BA1EC7242F00EA80A2 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34B91EC7242F00EA80A2 /* TestViewController.m */; };
 		98FC6CAA0994536BA34ADC11 /* libPods-CRNumberFadedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */; };
 		B904CE5B9A3F38ED878F3D1E /* libPods-CRNumberFadedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */; };
 		E12630B7F8A2DAAEE49B8133 /* libPods-CRNumberFaded.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */; };
@@ -74,8 +73,6 @@
 		09CA34B31EC614E900EA80A2 /* CRSliderIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSliderIndicator.m; sourceTree = "<group>"; };
 		09CA34B51EC6163D00EA80A2 /* CRSliderIndicatorChip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRSliderIndicatorChip.h; sourceTree = "<group>"; };
 		09CA34B61EC6163D00EA80A2 /* CRSliderIndicatorChip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRSliderIndicatorChip.m; sourceTree = "<group>"; };
-		09CA34B81EC7242F00EA80A2 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		09CA34B91EC7242F00EA80A2 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFaded.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,8 +143,6 @@
 				09C5C41F1E82BE6E0091EEAD /* ViewController.m */,
 				09CA34AF1EC612E300EA80A2 /* PerformanceVC.h */,
 				09CA34B01EC612E300EA80A2 /* PerformanceVC.m */,
-				09CA34B81EC7242F00EA80A2 /* TestViewController.h */,
-				09CA34B91EC7242F00EA80A2 /* TestViewController.m */,
 				0903454E1E82C7350061BE0C /* CRNumberFaded.h */,
 				0903454F1E82C7350061BE0C /* CRNumberFaded.m */,
 				090345511E82CC4C0061BE0C /* CRFadedView.h */,
@@ -502,7 +497,6 @@
 				09CA34B71EC6163D00EA80A2 /* CRSliderIndicatorChip.m in Sources */,
 				090345501E82C7350061BE0C /* CRNumberFaded.m in Sources */,
 				09C5C4201E82BE6E0091EEAD /* ViewController.m in Sources */,
-				09CA34BA1EC7242F00EA80A2 /* TestViewController.m in Sources */,
 				09CA34B41EC614E900EA80A2 /* CRSliderIndicator.m in Sources */,
 				09C5C41D1E82BE6E0091EEAD /* AppDelegate.m in Sources */,
 				0985476D1EC52F6300E65846 /* CRSlider.m in Sources */,
