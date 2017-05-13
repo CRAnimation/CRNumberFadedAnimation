@@ -281,9 +281,10 @@ struct CurrentLoopPara {
     
     if (_animating == NO) {
         _animating = YES;
-        if ([_delegate respondsToSelector:@selector(willStartFirstAnimationWithString:)]) {
-            NSString *willShowString = [self getNextShowString];
-            [_delegate willStartFirstAnimationWithString:willShowString];
+        if ([_delegate respondsToSelector:@selector(willStartFirstAnimationWithString:index:)]) {
+            int willShowIndex = [self getNextShowIndex];
+            NSString *willShowString = _strings[willShowIndex];
+            [_delegate willStartFirstAnimationWithString:willShowString index:willShowIndex];
         }
     }
     
@@ -313,9 +314,16 @@ struct CurrentLoopPara {
         _animating = NO;
     }else{
         if ([self absValue1:_currentIndex value2:_toIndex] == 1) {
-            if ([_delegate respondsToSelector:@selector(willShowLastOneFadeAnimationWithString:)]) {
-                NSString *willShowString = [self getNextShowString];
-                [_delegate willShowLastOneFadeAnimationWithString:willShowString];
+            if ([_delegate respondsToSelector:@selector(willShowLastOneFadeAnimationWithString:index:)]) {
+                int willShowIndex = [self getNextShowIndex];
+                NSString *willShowString = _strings[willShowIndex];
+                [_delegate willShowLastOneFadeAnimationWithString:willShowString index:willShowIndex];
+            }
+        }else{
+            if ([_delegate respondsToSelector:@selector(fadingAnimationWithString:index:)]) {
+                int willShowIndex = [self getNextShowIndex];
+                NSString *willShowString = _strings[willShowIndex];
+                [_delegate fadingAnimationWithString:willShowString index:willShowIndex];
             }
         }
         
@@ -335,7 +343,7 @@ struct CurrentLoopPara {
     return value;
 }
 
-- (NSString *)getNextShowString
+- (int)getNextShowIndex
 {
     CRFadeViewDirType direction = CRFadeViewDirType_Null;
     if (_toIndex > _currentIndex) {
@@ -344,14 +352,14 @@ struct CurrentLoopPara {
         direction = CRFadeViewDirType_Last;
     }
     
-    NSString *string = @"";
+    int willShowIndex = 0;
     if (direction == CRFadeViewDirType_Next) {
-        string = _strings[[self caculateIndex:self.currentIndex + 1]];
+        willShowIndex = [self caculateIndex:self.currentIndex + 1];
     }else if (direction == CRFadeViewDirType_Last){
-        string = _strings[[self caculateIndex:self.currentIndex - 1]];
+        willShowIndex = [self caculateIndex:self.currentIndex - 1];
     }
     
-    return string;
+    return willShowIndex;
 }
 
 #pragma mark - Setter & Getter

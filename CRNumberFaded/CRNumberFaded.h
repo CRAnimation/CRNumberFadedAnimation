@@ -10,8 +10,9 @@
 
 @protocol CRNumberFadedDelegate <NSObject>
 
-- (void)willShowLastOneFadeAnimationWithString:(NSString *)string;
-- (void)willStartFirstAnimationWithString:(NSString *)string;
+- (void)willShowLastOneFadeAnimationWithString:(NSString *)string index:(int)index;
+- (void)willStartFirstAnimationWithString:(NSString *)string index:(int)index;
+- (void)fadingAnimationWithString:(NSString *)string index:(int)index;
 
 @end
 

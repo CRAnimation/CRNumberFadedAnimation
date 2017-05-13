@@ -138,11 +138,18 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 
 - (void)createCRSlider
 {
+    UIImage *fireImage = [UIImage imageNamed:@"fireIcon"];
+    UIImageView *tempImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    tempImageV.image = fireImage;
+    
     _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 40)];
     _slider.delegate = self;
     _slider.minimumValue = 0;
     _slider.maximumValue = maxNum;
     _slider.backgroundColor = [UIColor clearColor];
+    _slider.thumbImageV.backgroundColor = [UIColor whiteColor];
+    [_slider.thumbImageV addSubview:tempImageV];
+    [tempImageV BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
     [_slider.poleImageV setY:_slider.poleImageV.y + _slider.height / 6.0 * 1];
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
@@ -228,7 +235,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 }
 
 #pragma mark - CRFadedViewDelegate
-- (void)willShowLastOneFadeAnimationWithString:(NSString *)string
+- (void)willShowLastOneFadeAnimationWithString:(NSString *)string index:(int)index
 {
     if (self.lrLablesStatus != LRLablesStatusDrawIn) {
         self.lrLablesStatus = LRLablesStatusDrawIn;
@@ -236,12 +243,17 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     }
 }
 
-- (void)willStartFirstAnimationWithString:(NSString *)string
+- (void)willStartFirstAnimationWithString:(NSString *)string index:(int)index
 {
     if (self.lrLablesStatus != LRLablesStatusSpread) {
         self.lrLablesStatus = LRLablesStatusSpread;
         [self leftAndRightLabelAnimationWithStatus:self.lrLablesStatus string:string];
     }
+}
+
+- (void)fadingAnimationWithString:(NSString *)string index:(int)index
+{
+//    [self changeGradientColorsWithCurrentIndex:index];
 }
 
 #pragma mark - Setter & Getter

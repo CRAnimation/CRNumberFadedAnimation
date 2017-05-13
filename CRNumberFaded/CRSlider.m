@@ -49,7 +49,7 @@
 
 - (void)createUI
 {
-    _poleImageV = [[UIImageView alloc] initWithFrame:CGRectMake(_poleImageVOffX, 0, self.width - 2 * _poleImageVOffX, 1)];
+    _poleImageV = [[UIImageView alloc] initWithFrame:CGRectMake(_poleImageVOffX, 0, self.width - 2 * _poleImageVOffX, 0.5)];
     _poleImageV.backgroundColor = [UIColor grayColor];
     [self addSubview:_poleImageV];
     [_poleImageV BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
@@ -57,6 +57,9 @@
     _thumbImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _thumbImageVWidth, _thumbImageVWidth)];
     _thumbImageV.layer.cornerRadius = _thumbImageVWidth / 2.0;
     _thumbImageV.layer.backgroundColor = [UIColor orangeColor].CGColor;
+    _thumbImageV.layer.shadowOpacity = 0.3;
+    _thumbImageV.layer.shadowOffset = CGSizeMake(-3, 3);
+    _thumbImageV.layer.shadowRadius = 5;
     [self addSubview:_thumbImageV];
     [_thumbImageV BearSetCenterToView:_poleImageV withAxis:kAXIS_Y];
     
