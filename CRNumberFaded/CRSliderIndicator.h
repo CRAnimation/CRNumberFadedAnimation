@@ -10,4 +10,6 @@
 
 @interface CRSliderIndicator : UIView
 
+@property (assign, nonatomic) CGFloat  circleCenterX;
+
 @end

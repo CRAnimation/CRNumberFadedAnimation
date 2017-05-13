@@ -55,6 +55,7 @@
     _numberFadedView.backgroundColor = [UIColor orangeColor];
     [_sliderIndicator addSubview:_numberFadedView];
     [_numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
+    [_numberFadedView setY:_numberFadedView.y - 50];
 }
 
 - (void)createCRSlider
@@ -74,6 +75,12 @@
     int index = (int)ceil(slider.value);
     NSLog(@"--1 slider value:%d", index);
     [_numberFadedView showToIndex:index];
+    
+    CGPoint thumbImageVCenter = slider.thumbImageV.center;
+    CGPoint tempCenter = [_sliderIndicator convertPoint:thumbImageVCenter fromView:slider];
+    [_sliderIndicator setCircleCenterX:thumbImageVCenter.x];
+    
+    NSLog(@"thumbImageVCenter:%@ tempCenter:%@", NSStringFromCGPoint(thumbImageVCenter), NSStringFromCGPoint(tempCenter));
 }
 
 @end
