@@ -90,9 +90,10 @@
 {
     _gradientLayer = [CAGradientLayer layer];
     _gradientLayer.colors = @[(__bridge id)UIColorFromHEX(0xFF873E).CGColor,
-                             (__bridge id)UIColorFromHEX(0xFF734B).CGColor
+                              (__bridge id)UIColorFromHEX(0xFF734D).CGColor,
+                              (__bridge id)UIColorFromHEX(0xFF6461).CGColor
                              ];
-    _gradientLayer.startPoint = CGPointMake(0, 0);
+    _gradientLayer.startPoint = CGPointMake(1, 0);
     _gradientLayer.endPoint = CGPointMake(0, 1);
     _gradientLayer.frame = _bgLayer.bounds;
     [_bgLayer addSublayer:_gradientLayer];
@@ -251,6 +252,17 @@
     _circleCenter.x = _circleCenterX;
     [self relayUI];
     _bgLayer.mask = _maskLayer;
+}
+
+- (void)setGradientColors:(NSArray *)gradientColors
+{
+    if (!gradientColors) {
+        return;
+    }
+    
+    _gradientColors = gradientColors;
+    _gradientLayer.colors = _gradientColors;
+
 }
 
 @end

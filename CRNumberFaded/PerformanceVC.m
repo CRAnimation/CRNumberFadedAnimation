@@ -185,6 +185,32 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     int index = (int)round(slider.value);
     NSLog(@"--1 slider value:%d", index);
     [_numberFadedView showToIndex:index];
+    [self changeGradientColorsWithCurrentIndex:index];
+}
+
+- (void)changeGradientColorsWithCurrentIndex:(int)index
+{
+    NSArray *colors1 = @[(__bridge id)UIColorFromHEX(0xFF873E).CGColor,
+                         (__bridge id)UIColorFromHEX(0xFF734D).CGColor,
+                         (__bridge id)UIColorFromHEX(0xFF6461).CGColor
+                         ];
+    NSArray *colors2 = @[(__bridge id)UIColorFromHEX(0xA442D7).CGColor,
+                         (__bridge id)UIColorFromHEX(0xDB58A1).CGColor,
+                         (__bridge id)UIColorFromHEX(0xFF7367).CGColor
+                         ];
+    NSArray *colors3 = @[(__bridge id)UIColorFromHEX(0x00E4FC).CGColor,
+                         (__bridge id)UIColorFromHEX(0x4AA2FB).CGColor,
+                         (__bridge id)UIColorFromHEX(0x7061F8).CGColor
+                         ];
+    
+    if (index <= 6) {
+        _sliderIndicator.gradientColors = colors1;
+    }else if (index <= 18) {
+        _sliderIndicator.gradientColors = colors2;
+    }else{
+        _sliderIndicator.gradientColors = colors3;
+    }
+    
 }
 
 #pragma mark - CRSliderDelegate
