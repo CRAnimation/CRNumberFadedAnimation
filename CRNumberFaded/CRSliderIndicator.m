@@ -7,6 +7,7 @@
 //
 
 #import "CRSliderIndicator.h"
+#import "CRSliderIndicatorChip.h"
 
 @interface CRSliderIndicator ()
 {
@@ -16,6 +17,9 @@
     CAGradientLayer *_gradientLayer;
     CGPoint _circleCenter;
     CGFloat _y0;
+    
+    UIDynamicAnimator *_dynamicAnimator;
+    NSMutableArray *_chipViews;
 }
 
 @end
@@ -41,6 +45,27 @@
     _circleCenterX = 0;
     _circleCenter = CGPointMake(_circleCenterX, self.height + _toCircleCenterYDistance);
     _y0 = _circleCenter.y - _toCircleCenterYDistance;
+    
+    _dynamicAnimator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
+    [self generateChips];
+}
+
+- (void)generateChips
+{
+    _chipViews = [NSMutableArray new];
+    
+    for (int i = 0; i < 6; i++) {
+        CRSliderIndicatorChip *chipView = [[CRSliderIndicatorChip alloc] initWithCommonFrame];
+        chipView.string = [NSString stringWithFormat:@"%d", i];
+        [self addSubview:chipView];
+        [_chipViews addObject:chipView];
+        
+        [BearConstants delayAfter:2.0 dealBlock:^{
+            chipView.status = CRSliderIndicatorChipStatusScale;
+        }];
+    }
+    
+    [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0];
 }
 
 - (void)createUI
@@ -75,6 +100,8 @@
     _gradientLayer.frame = _bgLayer.bounds;
     [_bgLayer addSublayer:_gradientLayer];
 }
+
+#pragma mark - generatePath
 
 #define ratioValueX(value) (value * ratioX)
 #define ratioValueY(value) (value * ratioY)
@@ -142,6 +169,7 @@
     return path;
 }
 
+#pragma mark - Test Point
 - (void)clean
 {
     for (UIView *point in self.subviews) {
@@ -162,6 +190,23 @@
 {
     _path = [self generatePath];
     _maskLayer.path = _path.CGPath;
+}
+
+#pragma mark - Behavior
+- (UIGravityBehavior *)addGravityBehavior:(id <UIDynamicItem>)item
+{
+    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] init];
+    [gravityBehavior addItem:item];
+    
+    return gravityBehavior;
+}
+
+- (UICollisionBehavior *)addCollisionBehavior:(id <UIDynamicItem>)item
+{
+    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
+    [collisionBehavior addItem:item];
+    
+    return collisionBehavior;
 }
 
 #pragma mark - Setter & Getter

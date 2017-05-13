@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, CRSliderIndicatorChipStatus) {
+    CRSliderIndicatorChipStatusIdle,
+    CRSliderIndicatorChipStatusNormal,
+    CRSliderIndicatorChipStatusScale,
+};
+
 @interface CRSliderIndicatorChip : UIView
+
+@property (strong, nonatomic) NSString  *string;
+@property (assign, nonatomic) CRSliderIndicatorChipStatus status;
+
+- (instancetype)initWithCommonFrame;
 
 @end
