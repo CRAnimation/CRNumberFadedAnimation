@@ -26,7 +26,7 @@
     self = [super initWithFrame:CGRectMake(0, 0, 40, 80)];
     
     if (self) {
-        _duration = 0.4;
+        _duration = 0.25;
         [self createUI];
     }
     

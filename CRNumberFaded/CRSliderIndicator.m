@@ -17,8 +17,9 @@
     CAGradientLayer *_gradientLayer;
     CGPoint _circleCenter;
     CGFloat _y0;
+    CRSliderIndicatorChip *lastNearestChipView;
     
-    NSMutableArray *_chipViews;
+    NSMutableArray <CRSliderIndicatorChip *> *_chipViews;
 }
 
 @end
@@ -57,10 +58,6 @@
         chipView.string = [NSString stringWithFormat:@"%d", i];
         [self addSubview:chipView];
         [_chipViews addObject:chipView];
-        
-        [BearConstants delayAfter:2.0 dealBlock:^{
-            chipView.status = CRSliderIndicatorChipStatusScale;
-        }];
     }
     
     [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0];
@@ -188,6 +185,60 @@
 {
     _path = [self generatePath];
     _maskLayer.path = _path.CGPath;
+    [self findNearstChipViewAndScale];
+}
+
+#pragma mark - Get Nearest Chip View
+- (void)findNearstChipViewAndScale
+{
+    CRSliderIndicatorChip *nearestChipView = [self getChipViewWithCircleCenterX:_circleCenter.x];
+    if (lastNearestChipView && lastNearestChipView == nearestChipView) {
+        nil;
+    }else{
+        for (CRSliderIndicatorChip *chipView in _chipViews) {
+            if (chipView == nearestChipView) {
+                chipView.status = CRSliderIndicatorChipStatusScale;
+            }else{
+                chipView.status = CRSliderIndicatorChipStatusNormal;
+            }
+        }
+        lastNearestChipView = nearestChipView;
+    }
+}
+
+- (CRSliderIndicatorChip *)getChipViewWithCircleCenterX:(CGFloat)centerX
+{
+    NSNumber *minValue;
+    CRSliderIndicatorChip *nearestChipView;
+    for (CRSliderIndicatorChip *chipView in _chipViews) {
+        CGFloat resultValue = [self absValue1:chipView.centerX value2:centerX];
+        if (!minValue) {
+            minValue = [NSNumber numberWithFloat:resultValue];
+        }
+        
+        if (!nearestChipView) {
+            nearestChipView = chipView;
+        }
+        
+        if (resultValue < [minValue floatValue]) {
+            minValue = [NSNumber numberWithFloat:resultValue];
+            nearestChipView = chipView;
+        }
+    }
+    
+    return nearestChipView;
+}
+
+- (CGFloat)absValue1:(CGFloat)value1 value2:(CGFloat)value2
+{
+    CGFloat resultValue = 0;
+    if (value1 > value2) {
+        resultValue = value1 - value2;
+    }else{
+        resultValue = value2 - value1;
+    }
+    
+    return resultValue;
 }
 
 #pragma mark - Setter & Getter
