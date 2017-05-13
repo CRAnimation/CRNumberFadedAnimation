@@ -11,13 +11,25 @@
 #import "CRSlider.h"
 #import "CRSliderIndicator.h"
 
+typedef NS_ENUM(NSInteger, LRLablesStatus) {
+    LRLablesStatusIdle,
+    LRLablesStatusSpread,
+    LRLablesStatusDrawIn,
+};
+
 @interface PerformanceVC () <CRSliderDelegate, CRNumberFadedDelegate>
 {
     UIView *_customNaviBarView;
     CRNumberFaded *_numberFadedView;
     CRSlider *_slider;
     CRSliderIndicator *_sliderIndicator;
+    
+    UILabel *_leftLabel;
+    UILabel *_rightLabel;
 }
+
+@property (assign, nonatomic) LRLablesStatus lrLablesStatus;
+
 @end
 
 @implementation PerformanceVC
@@ -34,8 +46,10 @@
     [self createCustomNavigationBarView];
     [self createSliderIndicator];
     [self createNumberFadedView];
+    [self createLeftAndRightLabel];
     [self createCRSlider];
     
+    [self thumbImageVDidSlided:_slider];
     _sliderIndicator.r = _slider.thumbImageV.width / 2.0;
     _sliderIndicator.toCircleCenterYDistance = _slider.y + _slider.height / 2.0 - _sliderIndicator.maxY;
 }
@@ -100,6 +114,25 @@
     [_numberFadedView setY:_numberFadedView.y - 50];
 }
 
+- (void)createLeftAndRightLabel
+{
+    _leftLabel = [UILabel new];
+    _leftLabel.text = @"Every";
+    _leftLabel.font = [UIFont systemFontOfSize:16];
+    _leftLabel.textColor = [UIColor whiteColor];
+    [_leftLabel sizeToFit];
+    [_sliderIndicator addSubview:_leftLabel];
+    [_leftLabel BearSetRelativeLayoutWithDirection:kDIR_LEFT destinationView:_numberFadedView parentRelation:NO distance:0 center:YES];
+    
+    _rightLabel = [UILabel new];
+    _rightLabel.text = @"hours";
+    _rightLabel.font = [UIFont systemFontOfSize:16];
+    _rightLabel.textColor = [UIColor whiteColor];
+    [_rightLabel sizeToFit];
+    [_sliderIndicator addSubview:_rightLabel];
+    [_rightLabel BearSetRelativeLayoutWithDirection:kDIR_RIGHT destinationView:_numberFadedView parentRelation:NO distance:0 center:YES];
+}
+
 - (void)createCRSlider
 {
     _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 40)];
@@ -111,6 +144,36 @@
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:-20 center:YES];
+}
+
+#pragma mark - LeftAndRightLabelAnimation
+- (void)leftAndRightLabelAnimationWithStatus:(LRLablesStatus)status string:(NSString *)string
+{
+    CGFloat during = 0.7;
+    CGFloat offX = 20;
+    CGFloat gapX = 20;
+    UIView *labelSuperView = _rightLabel.superview;
+    CGFloat halfSuperViewWidth = labelSuperView.width / 2.0;
+    if (status == LRLablesStatusSpread) {
+        [UIView animateWithDuration:during delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [_leftLabel setX:offX];
+            [_rightLabel setMaxX:labelSuperView.width - offX];
+        } completion:^(BOOL finished) {
+            nil;
+        }];
+    }else if (status == LRLablesStatusDrawIn) {
+        UILabel *tempLabel = [UILabel new];
+        tempLabel.text = string;
+        tempLabel.font = _numberFadedView.font;
+        [tempLabel sizeToFit];
+        CGFloat halfLabelWidth = tempLabel.width / 2.0;
+        [UIView animateWithDuration:during delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [_leftLabel setMaxX:halfSuperViewWidth - halfLabelWidth - gapX];
+            [_rightLabel setX:halfSuperViewWidth + halfLabelWidth + gapX];
+        } completion:^(BOOL finished) {
+            nil;
+        }];
+    }
 }
 
 #pragma mark - Event
@@ -125,6 +188,9 @@
 - (void)thumbImageVDidSlided:(CRSlider *)slider
 {
     CALayer *presentationLayer = slider.thumbImageV.layer.presentationLayer;
+    if (!presentationLayer) {
+        presentationLayer = slider.thumbImageV.layer;
+    }
     CGPoint thumbImageVCenter = presentationLayer.position;
     CGPoint tempCenter = [_sliderIndicator convertPoint:thumbImageVCenter fromView:slider];
     [_sliderIndicator setCircleCenterX:thumbImageVCenter.x];
@@ -136,11 +202,26 @@
 - (void)willShowLastOneFadeAnimationWithString:(NSString *)string
 {
     NSLog(@"--string:%@", string);
+    if (self.lrLablesStatus != LRLablesStatusDrawIn) {
+        self.lrLablesStatus = LRLablesStatusDrawIn;
+        [self leftAndRightLabelAnimationWithStatus:self.lrLablesStatus string:string];
+    }
 }
 
 - (void)willStartFirstAnimationWithString:(NSString *)string
 {
     NSLog(@"--start:%@", string);
+    
+    if (self.lrLablesStatus != LRLablesStatusSpread) {
+        self.lrLablesStatus = LRLablesStatusSpread;
+        [self leftAndRightLabelAnimationWithStatus:self.lrLablesStatus string:string];
+    }
+}
+
+#pragma mark - Setter & Getter
+- (void)setLrLablesStatus:(LRLablesStatus)lrLablesStatus
+{
+    _lrLablesStatus = lrLablesStatus;
 }
 
 @end

@@ -33,6 +33,7 @@
     if (self) {
         [self initPara];
         [self createUI];
+        self.circleCenterX = 0;
     }
     
     return self;
@@ -42,7 +43,6 @@
 {
     _r = 20;
     _toCircleCenterYDistance = 0;
-    _circleCenterX = 0;
     _circleCenter = CGPointMake(_circleCenterX, self.height + _toCircleCenterYDistance);
     _y0 = _circleCenter.y - _toCircleCenterYDistance;
     
