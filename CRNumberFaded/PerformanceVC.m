@@ -13,6 +13,7 @@
 
 @interface PerformanceVC () <CRSliderDelegate>
 {
+    UIView *_customNaviBarView;
     CRNumberFaded *_numberFadedView;
     CRSlider *_slider;
     CRSliderIndicator *_sliderIndicator;
@@ -30,6 +31,7 @@
 
 - (void)createUI
 {
+    [self createCustomNavigationBarView];
     [self createSliderIndicator];
     [self createNumberFadedView];
     [self createCRSlider];
@@ -38,11 +40,40 @@
     _sliderIndicator.toCircleCenterYDistance = _slider.y + _slider.height / 2.0 - _sliderIndicator.maxY;
 }
 
+- (void)createCustomNavigationBarView
+{
+    _customNaviBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, WIDTH, 44)];
+    _customNaviBarView.backgroundColor =[ UIColor whiteColor];
+    [self.view addSubview:_customNaviBarView];
+    
+    UILabel *titlLabel = [UILabel new];
+    titlLabel.text = @"App Settings";
+    titlLabel.textColor = UIColorFromHEX(0x919191);
+    [_customNaviBarView addSubview:titlLabel];
+    [titlLabel sizeToFit];
+    [titlLabel BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
+}
+
 - (void)createSliderIndicator
 {
-    _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 300)];
+    CGFloat sliderIndicatorHeight = 1.0 * (HEIGHT - _customNaviBarView.maxY) / 4 * 3;
+    _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, _customNaviBarView.maxY, WIDTH, sliderIndicatorHeight)];
     [self.view addSubview:_sliderIndicator];
-    [_sliderIndicator BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:20 center:YES];
+    
+    //  UI
+    UIImage *fireImage = [[UIImage imageNamed:@"fireIcon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImageView *fireImageV = [[UIImageView alloc] initWithImage:fireImage];
+    fireImageV.frame = CGRectMake(0, 0, 35, 35);
+    fireImageV.tintColor = [UIColor whiteColor];
+    [_sliderIndicator addSubview:fireImageV];
+    [fireImageV BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:30 center:YES];
+    
+    UILabel *noticeLabel = [UILabel new];
+    noticeLabel.textColor = [UIColor whiteColor];
+    noticeLabel.text = @"Get hottest discounts";
+    [noticeLabel sizeToFit];
+    [_sliderIndicator addSubview:noticeLabel];
+    [noticeLabel BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:fireImageV parentRelation:NO distance:15 center:YES];
 }
 
 - (void)createNumberFadedView
@@ -54,8 +85,10 @@
     }
     
     _numberFadedView = [[CRNumberFaded alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    _numberFadedView.font = [UIFont fontWithName:@"Helvetica-Bold" size:150];
+    _numberFadedView.textColor = [UIColor whiteColor];
     _numberFadedView.strings = strings;
-    _numberFadedView.backgroundColor = [UIColor orangeColor];
+    _numberFadedView.backgroundColor = [UIColor clearColor];
     [_sliderIndicator addSubview:_numberFadedView];
     [_numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
     [_numberFadedView setY:_numberFadedView.y - 50];
@@ -63,7 +96,7 @@
 
 - (void)createCRSlider
 {
-    _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 40)];
+    _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 40)];
     _slider.delegate = self;
     _slider.minimumValue = 0;
     _slider.maximumValue = 20;

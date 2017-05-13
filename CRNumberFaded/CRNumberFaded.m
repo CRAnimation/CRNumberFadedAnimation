@@ -73,6 +73,8 @@ struct CurrentLoopPara {
     _unSkipArray = [NSMutableArray new];
     _easyInEasyOutFadeCount = 2;
     _animating = NO;
+    _font = [UIFont systemFontOfSize:17];
+    _textColor = [UIColor blackColor];
 }
 
 - (void)createUI
@@ -103,14 +105,20 @@ struct CurrentLoopPara {
     
     fadedViewLast.layer.opacity = 0;
     fadedViewLast.label.text = _strings[[self caculateIndex:_currentIndex - 1]];
+    fadedViewLast.label.font = _font;
+    fadedViewLast.label.textColor = _textColor;
     [fadedViewLast relayUI];
     
     fadedViewNow.layer.opacity = 1;
     fadedViewNow.label.text = _strings[[self caculateIndex:_currentIndex]];
+    fadedViewNow.label.font = _font;
+    fadedViewNow.label.textColor = _textColor;
     [fadedViewNow relayUI];
     
     fadedViewNext.layer.opacity = 0;
     fadedViewNext.label.text = _strings[[self caculateIndex:_currentIndex + 1]];
+    fadedViewNext.label.font = _font;
+    fadedViewNext.label.textColor = _textColor;
     [fadedViewNext relayUI];
 }
 

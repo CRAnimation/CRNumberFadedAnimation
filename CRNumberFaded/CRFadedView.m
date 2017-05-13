@@ -39,9 +39,11 @@
 - (void)initDefaultParameter
 {
     self.needLabel = @YES;
-    self.fadeInRatio = @0.1;
-    self.fadeOutRatio = @4;
+    self.fadeInRatio = @0.3;
+    self.fadeOutRatio = @2;
     self.animationDuration = @0.6;
+    self.fadeOutOffSetPointValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX - 100, self.centerY)];
+    self.fadeInOffSetPointValue = [NSValue valueWithCGPoint:CGPointMake(self.centerX + 100, self.centerY)];
 }
 
 - (void)layoutSubviews
