@@ -7,8 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class CRSlider;
+
+@protocol CRSliderDelegate <NSObject>
+
+- (void)thumbImageVDidSlided:(CRSlider *)slider;
+
+@end
 
 @interface CRSlider : UIControl
+
+@property (weak, nonatomic) id <CRSliderDelegate> delegate;
 
 @property(nonatomic) float value;                                 // default 0.0. this value will be pinned to min/max
 @property(nonatomic) float minimumValue;                          // default 0.0. the current value may change if outside new min value

@@ -157,6 +157,7 @@
     [self addSubview:pointV];
 }
 
+#pragma mark - RelayUI
 - (void)relayUI
 {
     _path = [self generatePath];

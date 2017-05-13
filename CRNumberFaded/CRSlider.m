@@ -13,6 +13,7 @@
     CGFloat _thumbImageVWidth;
     CGFloat _animationTotalDuring;
     CGFloat _animationMinDuring;
+    CADisplayLink *_displayLink;
 }
 
 @end
@@ -40,6 +41,10 @@
     _thumbImageVWidth = self.height < self.width ? self.height : self.width;
     _animationTotalDuring = 0.6;
     _animationMinDuring = 0.2;
+    
+    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(thumbImageVHaveSlided)];
+    [_displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    _displayLink.paused = YES;
 }
 
 - (void)createUI
@@ -92,11 +97,19 @@
 }
 
 #pragma mark - Event
+- (void)thumbImageVHaveSlided
+{
+    if ([_delegate respondsToSelector:@selector(thumbImageVDidSlided:)]) {
+        [_delegate thumbImageVDidSlided:self];
+    }
+}
+
 - (void)panGREvent:(UIPanGestureRecognizer *)GR
 {
     CGPoint point = [GR locationInView:_poleImageV];
     [self caculateWithPoint:point];
     [self relayThumbImagV];
+    [self thumbImageVHaveSlided];
 }
 
 - (void)tapGREvent:(UITapGestureRecognizer *)GR
@@ -120,8 +133,9 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          [weakSelf relayThumbImagV];
+                         _displayLink.paused = NO;
                      } completion:^(BOOL finished) {
-                         nil;
+                         _displayLink.paused = YES;
                      }];
 }
 

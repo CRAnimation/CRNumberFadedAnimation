@@ -11,7 +11,7 @@
 #import "CRSlider.h"
 #import "CRSliderIndicator.h"
 
-@interface PerformanceVC ()
+@interface PerformanceVC () <CRSliderDelegate>
 {
     CRNumberFaded *_numberFadedView;
     CRSlider *_slider;
@@ -64,6 +64,7 @@
 - (void)createCRSlider
 {
     _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH - 40, 40)];
+    _slider.delegate = self;
     _slider.minimumValue = 0;
     _slider.maximumValue = 20;
     _slider.backgroundColor = [UIColor clearColor];
@@ -79,7 +80,11 @@
     int index = (int)ceil(slider.value);
     NSLog(@"--1 slider value:%d", index);
     [_numberFadedView showToIndex:index];
-    
+}
+
+#pragma mark - CRSliderDelegate
+- (void)thumbImageVDidSlided:(CRSlider *)slider
+{
     CGPoint thumbImageVCenter = slider.thumbImageV.center;
     CGPoint tempCenter = [_sliderIndicator convertPoint:thumbImageVCenter fromView:slider];
     [_sliderIndicator setCircleCenterX:thumbImageVCenter.x];
