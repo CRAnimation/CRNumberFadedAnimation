@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CRNumberFadedDelegate <NSObject>
+
+- (void)willShowLastOneFadeAnimationWithString:(NSString *)string;
+- (void)willStartFirstAnimationWithString:(NSString *)string;
+
+@end
+
 @interface CRNumberFaded : UIView
 
+@property (weak, nonatomic) id <CRNumberFadedDelegate> delegate;
 @property (strong, nonatomic) NSArray   *strings;
 @property (strong, nonatomic) UIFont    *font;
 @property (strong, nonatomic) UIColor   *textColor;

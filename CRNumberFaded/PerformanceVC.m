@@ -11,7 +11,7 @@
 #import "CRSlider.h"
 #import "CRSliderIndicator.h"
 
-@interface PerformanceVC () <CRSliderDelegate>
+@interface PerformanceVC () <CRSliderDelegate, CRNumberFadedDelegate>
 {
     UIView *_customNaviBarView;
     CRNumberFaded *_numberFadedView;
@@ -66,14 +66,19 @@
     fireImageV.frame = CGRectMake(0, 0, 35, 35);
     fireImageV.tintColor = [UIColor whiteColor];
     [_sliderIndicator addSubview:fireImageV];
-    [fireImageV BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:30 center:YES];
+    [fireImageV BearSetRelativeLayoutWithDirection:kDIR_UP destinationView:nil parentRelation:YES distance:15 center:YES];
     
     UILabel *noticeLabel = [UILabel new];
     noticeLabel.textColor = [UIColor whiteColor];
     noticeLabel.text = @"Get hottest discounts";
     [noticeLabel sizeToFit];
     [_sliderIndicator addSubview:noticeLabel];
-    [noticeLabel BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:fireImageV parentRelation:NO distance:15 center:YES];
+    [noticeLabel BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:fireImageV parentRelation:NO distance:12 center:YES];
+    
+    UIView *sepLineV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH- 40, 0.5)];
+    sepLineV.backgroundColor = [UIColor whiteColor];
+    [_sliderIndicator addSubview:sepLineV];
+    [sepLineV BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:noticeLabel parentRelation:nil distance:18 center:YES];
 }
 
 - (void)createNumberFadedView
@@ -88,6 +93,7 @@
     _numberFadedView.font = [UIFont fontWithName:@"Helvetica-Bold" size:150];
     _numberFadedView.textColor = [UIColor whiteColor];
     _numberFadedView.strings = strings;
+    _numberFadedView.delegate = self;
     _numberFadedView.backgroundColor = [UIColor clearColor];
     [_sliderIndicator addSubview:_numberFadedView];
     [_numberFadedView BearSetCenterToParentViewWithAxis:kAXIS_X_Y];
@@ -124,6 +130,17 @@
     [_sliderIndicator setCircleCenterX:thumbImageVCenter.x];
     
     NSLog(@"thumbImageVCenter:%@ tempCenter:%@", NSStringFromCGPoint(thumbImageVCenter), NSStringFromCGPoint(tempCenter));
+}
+
+#pragma mark - CRFadedViewDelegate
+- (void)willShowLastOneFadeAnimationWithString:(NSString *)string
+{
+    NSLog(@"--string:%@", string);
+}
+
+- (void)willStartFirstAnimationWithString:(NSString *)string
+{
+    NSLog(@"--start:%@", string);
 }
 
 @end

@@ -278,7 +278,14 @@ struct CurrentLoopPara {
     }
     
     int D_value = abs(_toIndex - _currentIndex);
-    _animating = YES;
+    
+    if (_animating == NO) {
+        _animating = YES;
+        if ([_delegate respondsToSelector:@selector(willStartFirstAnimationWithString:)]) {
+            NSString *willShowString = [self getNextShowString];
+            [_delegate willStartFirstAnimationWithString:willShowString];
+        }
+    }
     
     CGFloat duration = [self getDurationFromDuringArrayWithD_Value:D_value];
     if (direction == CRFadeViewDirType_Next) {
@@ -305,8 +312,46 @@ struct CurrentLoopPara {
     if (_currentIndex == _toIndex) {
         _animating = NO;
     }else{
+        if ([self absValue1:_currentIndex value2:_toIndex] == 1) {
+            if ([_delegate respondsToSelector:@selector(willShowLastOneFadeAnimationWithString:)]) {
+                NSString *willShowString = [self getNextShowString];
+                [_delegate willShowLastOneFadeAnimationWithString:willShowString];
+            }
+        }
+        
         [self caculateSpeedAndScroll];
     }
+}
+
+- (int)absValue1:(int)value1 value2:(int)value2
+{
+    int value = 0;
+    if (value1 > value2) {
+        value = value1 - value2;
+    }else{
+        value = value2 - value1;
+    }
+    
+    return value;
+}
+
+- (NSString *)getNextShowString
+{
+    CRFadeViewDirType direction = CRFadeViewDirType_Null;
+    if (_toIndex > _currentIndex) {
+        direction = CRFadeViewDirType_Next;
+    }else if (_toIndex < _currentIndex){
+        direction = CRFadeViewDirType_Last;
+    }
+    
+    NSString *string = @"";
+    if (direction == CRFadeViewDirType_Next) {
+        string = _strings[[self caculateIndex:self.currentIndex + 1]];
+    }else if (direction == CRFadeViewDirType_Last){
+        string = _strings[[self caculateIndex:self.currentIndex - 1]];
+    }
+    
+    return string;
 }
 
 #pragma mark - Setter & Getter
