@@ -288,7 +288,8 @@
 				TargetAttributes = {
 					09C5C4141E82BE6D0091EEAD = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = LSACC47SM4;
+						ProvisioningStyle = Manual;
 					};
 					09C5C42D1E82BE6F0091EEAD = {
 						CreatedOnToolsVersion = 8.0;
@@ -650,11 +651,15 @@
 			baseConfigurationReference = E4A9995EB2977FD651368CC7 /* Pods-CRNumberFaded.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LSACC47SM4;
 				GCC_PREFIX_HEADER = CRNumberFaded/PrefixHeader.pch;
 				INFOPLIST_FILE = CRNumberFaded/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Bear.CRNumberFaded;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bear.crslider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "66462106-8a51-4d2d-a2e2-a5553906f6c3";
+				PROVISIONING_PROFILE_SPECIFIER = CRSliderProfile_Dev;
 			};
 			name = Debug;
 		};
@@ -663,11 +668,14 @@
 			baseConfigurationReference = 53745675C8548BB5030D7949 /* Pods-CRNumberFaded.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREFIX_HEADER = CRNumberFaded/PrefixHeader.pch;
 				INFOPLIST_FILE = CRNumberFaded/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Bear.CRNumberFaded;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bear.crslider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

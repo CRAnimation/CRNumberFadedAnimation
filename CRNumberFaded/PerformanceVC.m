@@ -85,7 +85,8 @@
 #pragma mark - CRSliderDelegate
 - (void)thumbImageVDidSlided:(CRSlider *)slider
 {
-    CGPoint thumbImageVCenter = slider.thumbImageV.center;
+    CALayer *presentationLayer = slider.thumbImageV.layer.presentationLayer;
+    CGPoint thumbImageVCenter = presentationLayer.position;
     CGPoint tempCenter = [_sliderIndicator convertPoint:thumbImageVCenter fromView:slider];
     [_sliderIndicator setCircleCenterX:thumbImageVCenter.x];
     

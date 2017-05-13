@@ -109,7 +109,12 @@
     CGPoint point = [GR locationInView:_poleImageV];
     [self caculateWithPoint:point];
     [self relayThumbImagV];
-    [self thumbImageVHaveSlided];
+    
+    if (GR.state == UIGestureRecognizerStateBegan) {
+        _displayLink.paused = NO;
+    }else if (GR.state == UIGestureRecognizerStateEnded) {
+        _displayLink.paused = YES;
+    }
 }
 
 - (void)tapGREvent:(UITapGestureRecognizer *)GR
