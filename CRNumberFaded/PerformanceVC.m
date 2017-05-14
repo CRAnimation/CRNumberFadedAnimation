@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     [self createUI];
 }
 
+#pragma mark - CreateUI
 - (void)createUI
 {
     [self createCustomNavigationBarView];
@@ -50,6 +51,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     [self createNumberFadedView];
     [self createLeftAndRightLabel];
     [self createCRSlider];
+    [self createSwitch];
     
     [self thumbImageVDidSlided:_slider];
     _sliderIndicator.r = _slider.thumbImageV.width / 2.0;
@@ -154,6 +156,31 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:-20 center:YES];
+}
+
+- (void)createSwitch
+{
+    UISwitch *switchView = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    switchView.on = YES;
+    switchView.onTintColor = UIColorFromHEX(0xF56C4D);
+    [self.view addSubview:switchView];
+    [switchView BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_slider parentRelation:NO distance:30 center:YES];
+    
+    UILabel *offLabel = [UILabel new];
+    offLabel.text = @"Off";
+    offLabel.textColor = UIColorFromHEX(0xA7A8A8E);
+    offLabel.font = [UIFont systemFontOfSize:14];
+    [offLabel sizeToFit];
+    [self.view addSubview:offLabel];
+    [offLabel BearSetRelativeLayoutWithDirection:kDIR_LEFT destinationView:switchView parentRelation:NO distance:20 center:YES];
+    
+    UILabel *onLabel = [UILabel new];
+    onLabel.text = @"On";
+    onLabel.textColor = UIColorFromHEX(0xA7A8A8);
+    onLabel.font = [UIFont systemFontOfSize:14];
+    [onLabel sizeToFit];
+    [self.view addSubview:onLabel];
+    [onLabel BearSetRelativeLayoutWithDirection:kDIR_RIGHT destinationView:switchView parentRelation:NO distance:20 center:YES];
 }
 
 #pragma mark - LeftAndRightLabelAnimation

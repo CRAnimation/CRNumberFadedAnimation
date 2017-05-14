@@ -57,7 +57,7 @@
     _thumbImageV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _thumbImageVWidth, _thumbImageVWidth)];
     _thumbImageV.layer.cornerRadius = _thumbImageVWidth / 2.0;
     _thumbImageV.layer.backgroundColor = [UIColor orangeColor].CGColor;
-    _thumbImageV.layer.shadowOpacity = 0.3;
+    _thumbImageV.layer.shadowOpacity = 0.15;
     _thumbImageV.layer.shadowOffset = CGSizeMake(-3, 3);
     _thumbImageV.layer.shadowRadius = 5;
     [self addSubview:_thumbImageV];
