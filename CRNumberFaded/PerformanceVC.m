@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger, GradientColorsType) {
 
 - (void)createSliderIndicator
 {
-    NSArray *strings = @[@"0", @"6", @"12", @"18", @"24"];
+    NSArray *strings = @[@"0", @"6", @"12", @"18", @"23"];
     
     CGFloat sliderIndicatorHeight = 1.0 * (HEIGHT - _customNaviBarView.maxY) / 4 * 3;
     _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, _customNaviBarView.maxY, WIDTH, sliderIndicatorHeight) withStrings:strings];
@@ -251,7 +251,10 @@ typedef NS_ENUM(NSInteger, GradientColorsType) {
 - (void)testSliderChanged:(CRSlider *)slider
 {
     int index = (int)round(slider.value);
-    NSLog(@"--1 slider value:%d", index);
+    if (index == _maxNum) {
+        index = _maxNum - 1;
+    }
+    NSLog(@"--1 slider:%f index:%d", slider.value, index);
     [_numberFadedView showToIndex:index];
 }
 
