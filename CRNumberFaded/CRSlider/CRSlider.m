@@ -176,4 +176,12 @@
     NSLog(@"value:%f", _value);
 }
 
+- (void)setPoleImageVOffX:(float)poleImageVOffX
+{
+    _poleImageVOffX = poleImageVOffX;
+    
+    [_poleImageV setX:_poleImageVOffX];
+    [_poleImageV setWidth:self.width - 2*_poleImageVOffX];
+}
+
 @end

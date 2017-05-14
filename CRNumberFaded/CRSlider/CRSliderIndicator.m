@@ -62,7 +62,7 @@
         [_chipViews addObject:chipView];
     }
     
-    [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0 offStart:_chipOffX offEnd:_chipOffX];
+    self.chipOffX = _chipOffX;
 }
 
 - (void)createUI
@@ -262,7 +262,17 @@
     
     _gradientColors = gradientColors;
     _gradientLayer.colors = _gradientColors;
+}
 
+- (void)setChipOffX:(CGFloat)chipOffX
+{
+    _chipOffX = chipOffX;
+    
+    if ([_chipViews count] > 0) {
+        CRSliderIndicatorChip *chipView = _chipViews[0];
+        CGFloat offX = _chipOffX - chipView.width / 2.0;
+        [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0 offStart:offX offEnd:offX];
+    }
 }
 
 @end

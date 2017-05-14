@@ -165,8 +165,6 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:-20 center:YES];
-    
-    _slider.backgroundColor = [UIColor orangeColor];
 }
 
 - (void)createSwitch
