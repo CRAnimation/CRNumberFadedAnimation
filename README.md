@@ -1,7 +1,7 @@
-> 欢迎同样喜爱动效的你加入
-> iOS动效特攻队–>QQ群：547897182 
-> iOS动效特攻队–>熊熊：648070256
-> CRAnimation开源项目：[https://github.com/CRAnimation/CRAnimation](https://github.com/CRAnimation/CRAnimation)
+> 欢迎同样喜爱动效的你加入<br>
+iOS动效特攻队–>QQ群：547897182 <br>
+iOS动效特攻队–>熊熊：648070256<br>
+CRAnimation开源项目：[https://github.com/CRAnimation/CRAnimation](https://github.com/CRAnimation/CRAnimation)<br>
 
 ## gitHub：[CRNumberFadedAnimation](https://github.com/CRAnimation/CRNumberFadedAnimation)
 #### 断断续续3周的时间，把这个动效还原出来了。
@@ -11,7 +11,7 @@
 
 #### 最终的实现效果是这样的
 
-![CRNumberFaded.gif](http://upload-images.jianshu.io/upload_images/4748593-345b25b6bc2c0f14.gif?imageMogr2/auto-orient/strip)
+![CRNumberFaded2.gif](http://upload-images.jianshu.io/upload_images/4748593-265890dba37103fd.gif?imageMogr2/auto-orient/strip)
 
 ##### 当然了，这个动效里面的部分控件还是可以使用的。大家英文都辣么好，除非特别难理解的，一般的我就不写注释了。
 
@@ -99,7 +99,5 @@ _sliderIndicator.chipOffX = _poleImageVOffX;
 
 撸动效揪心的还是细节的不断调试，因为想尽可能的还原出来还是需要慢慢打磨的。不过希望大家能喜欢，也能真正的用在项目中。
 如果各位在使用过程中遇到问题或者bug，欢迎在github上提出issue。
-
-
 
 
