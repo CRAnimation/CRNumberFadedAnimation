@@ -22,6 +22,8 @@
 		09CA34D21EC7DD2200EA80A2 /* CRFadedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34CF1EC7DD2200EA80A2 /* CRFadedView.m */; };
 		09CA34D31EC7DD2200EA80A2 /* CRNumberFaded.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34D11EC7DD2200EA80A2 /* CRNumberFaded.m */; };
 		09CA34D51EC8087B00EA80A2 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 09CA34D41EC8087B00EA80A2 /* README.md */; };
+		09CA34D91EC8098200EA80A2 /* CRNumberFaded.gif in Resources */ = {isa = PBXBuildFile; fileRef = 09CA34D71EC8098200EA80A2 /* CRNumberFaded.gif */; };
+		09CA34DA1EC8098200EA80A2 /* CRNumberFadedOrigin.gif in Resources */ = {isa = PBXBuildFile; fileRef = 09CA34D81EC8098200EA80A2 /* CRNumberFadedOrigin.gif */; };
 		98FC6CAA0994536BA34ADC11 /* libPods-CRNumberFadedUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */; };
 		B904CE5B9A3F38ED878F3D1E /* libPods-CRNumberFadedTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */; };
 		E12630B7F8A2DAAEE49B8133 /* libPods-CRNumberFaded.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */; };
@@ -75,6 +77,8 @@
 		09CA34D01EC7DD2200EA80A2 /* CRNumberFaded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRNumberFaded.h; sourceTree = "<group>"; };
 		09CA34D11EC7DD2200EA80A2 /* CRNumberFaded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRNumberFaded.m; sourceTree = "<group>"; };
 		09CA34D41EC8087B00EA80A2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		09CA34D71EC8098200EA80A2 /* CRNumberFaded.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CRNumberFaded.gif; sourceTree = "<group>"; };
+		09CA34D81EC8098200EA80A2 /* CRNumberFadedOrigin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = CRNumberFadedOrigin.gif; sourceTree = "<group>"; };
 		3E98B4360C19FBD7FE8800BD /* libPods-CRNumberFaded.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFaded.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		43FD27C6415A22301ADD34A6 /* libPods-CRNumberFadedUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47164EEAAECA3F8FC300FDB4 /* libPods-CRNumberFadedTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CRNumberFadedTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,7 @@
 				09C5C4161E82BE6E0091EEAD /* Products */,
 				4AC3098EB3F3A64B2FC2D59B /* Pods */,
 				2EDFD3FD49B3949A6378CEBE /* Frameworks */,
+				09CA34D61EC8098200EA80A2 /* Resource */,
 			);
 			sourceTree = "<group>";
 		};
@@ -206,6 +211,15 @@
 				09CA34CF1EC7DD2200EA80A2 /* CRFadedView.m */,
 			);
 			path = CRNumberFaded;
+			sourceTree = "<group>";
+		};
+		09CA34D61EC8098200EA80A2 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				09CA34D71EC8098200EA80A2 /* CRNumberFaded.gif */,
+				09CA34D81EC8098200EA80A2 /* CRNumberFadedOrigin.gif */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		2EDFD3FD49B3949A6378CEBE /* Frameworks */ = {
@@ -347,9 +361,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09CA34DA1EC8098200EA80A2 /* CRNumberFadedOrigin.gif in Resources */,
 				09C5C4281E82BE6E0091EEAD /* LaunchScreen.storyboard in Resources */,
 				09C5C4251E82BE6E0091EEAD /* Assets.xcassets in Resources */,
 				09C5C4231E82BE6E0091EEAD /* Main.storyboard in Resources */,
+				09CA34D91EC8098200EA80A2 /* CRNumberFaded.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
