@@ -11,6 +11,8 @@ CRAnimation开源项目：[https://github.com/CRAnimation/CRAnimation](https://g
 
 #### 最终的实现效果是这样的
 
+![CRNumberFaded.gif](CRNumberFaded.gif)
+
 ![CRNumberFaded2.gif](http://upload-images.jianshu.io/upload_images/4748593-265890dba37103fd.gif?imageMogr2/auto-orient/strip)
 
 ##### 当然了，这个动效里面的部分控件还是可以使用的。大家英文都辣么好，除非特别难理解的，一般的我就不写注释了。
