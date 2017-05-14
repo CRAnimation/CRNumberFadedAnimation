@@ -3,8 +3,6 @@ iOS动效特攻队–>QQ群：547897182 <br/>
 iOS动效特攻队–>熊熊：648070256<br/>
 CRAnimation开源项目：[https://github.com/CRAnimation/CRAnimation](https://github.com/CRAnimation/CRAnimation)<br/>
 
----
-
 ## gitHub：[CRNumberFadedAnimation](https://github.com/CRAnimation/CRNumberFadedAnimation)
 #### 断断续续3周的时间，把这个动效还原出来了。
 #### 原型是这样的。
