@@ -26,7 +26,6 @@
 
 - (void)showNextView;
 - (void)showLastView;
-
 - (void)showToIndex:(int)toIndex;
 
 @end

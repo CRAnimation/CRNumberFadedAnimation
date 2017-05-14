@@ -10,10 +10,10 @@
 
 @interface CRSliderIndicator : UIView
 
-@property (assign, nonatomic) CGFloat   circleCenterX;
-@property (assign, nonatomic) CGFloat   r;
-@property (assign, nonatomic) CGFloat   toCircleCenterYDistance;
-@property (strong, nonatomic) NSArray   *gradientColors;
+@property (assign, nonatomic) CGFloat   circleCenterX;              //Slider按钮的CenterX
+@property (assign, nonatomic) CGFloat   r;                          //Slider按钮的半径
+@property (assign, nonatomic) CGFloat   toCircleCenterYDistance;    //Slider按钮的垂直距离
+@property (strong, nonatomic) NSArray   *gradientColors;            //背景渐变色数组
 @property (assign, nonatomic) CGFloat   chipOffX;
 
 - (instancetype)initWithFrame:(CGRect)frame withStrings:(NSArray *)strings;

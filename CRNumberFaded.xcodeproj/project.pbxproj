@@ -197,10 +197,10 @@
 		09CA34CD1EC7DD2200EA80A2 /* CRNumberFaded */ = {
 			isa = PBXGroup;
 			children = (
-				09CA34CE1EC7DD2200EA80A2 /* CRFadedView.h */,
-				09CA34CF1EC7DD2200EA80A2 /* CRFadedView.m */,
 				09CA34D01EC7DD2200EA80A2 /* CRNumberFaded.h */,
 				09CA34D11EC7DD2200EA80A2 /* CRNumberFaded.m */,
+				09CA34CE1EC7DD2200EA80A2 /* CRFadedView.h */,
+				09CA34CF1EC7DD2200EA80A2 /* CRFadedView.m */,
 			);
 			path = CRNumberFaded;
 			sourceTree = "<group>";
