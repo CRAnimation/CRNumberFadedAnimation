@@ -17,6 +17,13 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     LRLablesStatusDrawIn,
 };
 
+typedef NS_ENUM(NSInteger, GradientColorsType) {
+    GradientColorsTypeIdle,
+    GradientColorsType1,
+    GradientColorsType2,
+    GradientColorsType3,
+};
+
 @interface PerformanceVC () <CRSliderDelegate, CRNumberFadedDelegate>
 {
     UIView *_customNaviBarView;
@@ -28,6 +35,11 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     UILabel *_rightLabel;
     CGFloat _poleImageVOffX;
     int     _maxNum;
+    
+    GradientColorsType _gradientColorsType;
+    NSArray *_gradientColors1;
+    NSArray *_gradientColors2;
+    NSArray *_gradientColors3;
 }
 
 @property (assign, nonatomic) LRLablesStatus lrLablesStatus;
@@ -48,6 +60,19 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     self.view.backgroundColor = [UIColor whiteColor];
     _poleImageVOffX = WIDTH * 0.1;
     _maxNum = 24;
+    
+    _gradientColors1 = @[(__bridge id)UIColorFromHEX(0xFF873E).CGColor,
+                         (__bridge id)UIColorFromHEX(0xFF734D).CGColor,
+                         (__bridge id)UIColorFromHEX(0xFF6461).CGColor
+                         ];
+    _gradientColors2 = @[(__bridge id)UIColorFromHEX(0xA442D7).CGColor,
+                         (__bridge id)UIColorFromHEX(0xDB58A1).CGColor,
+                         (__bridge id)UIColorFromHEX(0xFF7367).CGColor
+                         ];
+    _gradientColors3 = @[(__bridge id)UIColorFromHEX(0x00E4FC).CGColor,
+                         (__bridge id)UIColorFromHEX(0x4AA2FB).CGColor,
+                         (__bridge id)UIColorFromHEX(0x7061F8).CGColor
+                         ];
 }
 
 #pragma mark - CreateUI
@@ -228,30 +253,46 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     int index = (int)round(slider.value);
     NSLog(@"--1 slider value:%d", index);
     [_numberFadedView showToIndex:index];
-    [self changeGradientColorsWithCurrentIndex:index];
 }
 
 - (void)changeGradientColorsWithCurrentIndex:(int)index
 {
-    NSArray *colors1 = @[(__bridge id)UIColorFromHEX(0xFF873E).CGColor,
-                         (__bridge id)UIColorFromHEX(0xFF734D).CGColor,
-                         (__bridge id)UIColorFromHEX(0xFF6461).CGColor
-                         ];
-    NSArray *colors2 = @[(__bridge id)UIColorFromHEX(0xA442D7).CGColor,
-                         (__bridge id)UIColorFromHEX(0xDB58A1).CGColor,
-                         (__bridge id)UIColorFromHEX(0xFF7367).CGColor
-                         ];
-    NSArray *colors3 = @[(__bridge id)UIColorFromHEX(0x00E4FC).CGColor,
-                         (__bridge id)UIColorFromHEX(0x4AA2FB).CGColor,
-                         (__bridge id)UIColorFromHEX(0x7061F8).CGColor
-                         ];
-    
+    GradientColorsType tempType;
     if (index <= 6) {
-        _sliderIndicator.gradientColors = colors1;
+        tempType = GradientColorsType1;
     }else if (index <= 18) {
-        _sliderIndicator.gradientColors = colors2;
+        tempType = GradientColorsType2;
     }else{
-        _sliderIndicator.gradientColors = colors3;
+        tempType = GradientColorsType3;
+    }
+    
+    if (tempType == _gradientColorsType) {
+        return;
+    }else{
+        _gradientColorsType = tempType;
+    }
+    
+    switch (_gradientColorsType) {
+        case GradientColorsType1:
+        {
+            _sliderIndicator.gradientColors = _gradientColors1;
+        }
+            break;
+            
+        case GradientColorsType2:
+        {
+            _sliderIndicator.gradientColors = _gradientColors2;
+        }
+            break;
+            
+        case GradientColorsType3:
+        {
+            _sliderIndicator.gradientColors = _gradientColors3;
+        }
+            break;
+            
+        default:
+            break;
     }
     
 }
@@ -289,7 +330,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 
 - (void)fadingAnimationWithString:(NSString *)string index:(int)index
 {
-//    [self changeGradientColorsWithCurrentIndex:index];
+    [self changeGradientColorsWithCurrentIndex:index];
 }
 
 #pragma mark - Setter & Getter

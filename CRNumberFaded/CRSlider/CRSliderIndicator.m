@@ -23,6 +23,8 @@
     NSMutableArray <CRSliderIndicatorChip *> *_chipViews;
 }
 
+@property (strong, nonatomic) CABasicAnimation *gradientAnimation;
+
 @end
 
 @implementation CRSliderIndicator
@@ -261,7 +263,16 @@
     }
     
     _gradientColors = gradientColors;
-    _gradientLayer.colors = _gradientColors;
+    
+    id fromValue = self.gradientAnimation.toValue;
+    CAGradientLayer *presentGradientLayer = _gradientLayer.presentationLayer;
+    if (presentGradientLayer) {
+        fromValue = presentGradientLayer.colors;
+    }
+    
+    self.gradientAnimation.fromValue = fromValue;
+    self.gradientAnimation.toValue = _gradientColors;
+    [_gradientLayer addAnimation:self.gradientAnimation forKey:self.gradientAnimation.keyPath];
 }
 
 - (void)setChipOffX:(CGFloat)chipOffX
@@ -273,6 +284,18 @@
         CGFloat offX = _chipOffX - chipView.width / 2.0;
         [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0 offStart:offX offEnd:offX];
     }
+}
+
+- (CABasicAnimation *)gradientAnimation
+{
+    if (!_gradientAnimation) {
+        _gradientAnimation = [CABasicAnimation animationWithKeyPath:@"colors"];
+        _gradientAnimation.removedOnCompletion = NO;
+        _gradientAnimation.fillMode = kCAFillModeForwards;
+        _gradientAnimation.duration = 0.7;
+    }
+    
+    return _gradientAnimation;
 }
 
 @end
