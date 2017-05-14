@@ -17,8 +17,6 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     LRLablesStatusDrawIn,
 };
 
-#define maxNum 24
-
 @interface PerformanceVC () <CRSliderDelegate, CRNumberFadedDelegate>
 {
     UIView *_customNaviBarView;
@@ -28,6 +26,8 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     
     UILabel *_leftLabel;
     UILabel *_rightLabel;
+    CGFloat _poleImageVOffX;
+    int     _maxNum;
 }
 
 @property (assign, nonatomic) LRLablesStatus lrLablesStatus;
@@ -39,8 +39,15 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self initPara];
     [self createUI];
+}
+
+- (void)initPara
+{
+    self.view.backgroundColor = [UIColor whiteColor];
+    _poleImageVOffX = WIDTH * 0.1;
+    _maxNum = 24;
 }
 
 #pragma mark - CreateUI
@@ -78,6 +85,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     
     CGFloat sliderIndicatorHeight = 1.0 * (HEIGHT - _customNaviBarView.maxY) / 4 * 3;
     _sliderIndicator = [[CRSliderIndicator alloc] initWithFrame:CGRectMake(0, _customNaviBarView.maxY, WIDTH, sliderIndicatorHeight) withStrings:strings];
+    _sliderIndicator.chipOffX = _poleImageVOffX;
     [self.view addSubview:_sliderIndicator];
     
     //  UI
@@ -104,7 +112,7 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
 - (void)createNumberFadedView
 {
     NSMutableArray *strings = [NSMutableArray new];
-    for (int i = 0; i < maxNum; i++) {
+    for (int i = 0; i < _maxNum; i++) {
         NSString *numberString = [NSString stringWithFormat:@"%d", i];
         [strings addObject:numberString];
     }
@@ -147,7 +155,8 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     _slider = [[CRSlider alloc] initWithFrame:CGRectMake(0, 0, WIDTH, 40)];
     _slider.delegate = self;
     _slider.minimumValue = 0;
-    _slider.maximumValue = maxNum;
+    _slider.maximumValue = _maxNum;
+    _slider.poleImageVOffX = _poleImageVOffX;
     _slider.backgroundColor = [UIColor clearColor];
     _slider.thumbImageV.backgroundColor = [UIColor whiteColor];
     [_slider.thumbImageV addSubview:tempImageV];
@@ -156,6 +165,8 @@ typedef NS_ENUM(NSInteger, LRLablesStatus) {
     [_slider addTarget:self action:@selector(testSliderChanged:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:_slider];
     [_slider BearSetRelativeLayoutWithDirection:kDIR_DOWN destinationView:_sliderIndicator parentRelation:NO distance:-20 center:YES];
+    
+    _slider.backgroundColor = [UIColor orangeColor];
 }
 
 - (void)createSwitch

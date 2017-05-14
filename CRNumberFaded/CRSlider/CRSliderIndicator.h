@@ -10,10 +10,11 @@
 
 @interface CRSliderIndicator : UIView
 
-@property (assign, nonatomic) CGFloat  circleCenterX;
+@property (assign, nonatomic) CGFloat   circleCenterX;
 @property (assign, nonatomic) CGFloat   r;
 @property (assign, nonatomic) CGFloat   toCircleCenterYDistance;
 @property (strong, nonatomic) NSArray   *gradientColors;
+@property (assign, nonatomic) CGFloat   chipOffX;
 
 - (instancetype)initWithFrame:(CGRect)frame withStrings:(NSArray *)strings;
 

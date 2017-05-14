@@ -62,7 +62,7 @@
         [_chipViews addObject:chipView];
     }
     
-    [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0];
+    [UIView BearV2AutoLayViewArray:_chipViews layoutAxis:kLAYOUT_AXIS_X alignmentType:kSetAlignmentType_End alignmentOffDis:0 offStart:_chipOffX offEnd:_chipOffX];
 }
 
 - (void)createUI
