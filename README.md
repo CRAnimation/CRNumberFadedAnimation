@@ -5,7 +5,7 @@ CRAnimation开源项目：[https://github.com/CRAnimation/CRAnimation](https://g
 
 ## gitHub：[CRNumberFadedAnimation](https://github.com/CRAnimation/CRNumberFadedAnimation)
 #### 断断续续3周的时间，把这个动效还原出来了。
-#### 原型是这样的。
+#### 原型是这样的。[原型地址](https://www.behance.net/gallery/48161077/Sayme?)
 
 ![CRNumberFadedOrigin.gif](Resource/CRNumberFadedOrigin.gif)
 
